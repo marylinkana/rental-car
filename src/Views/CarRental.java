@@ -22,12 +22,12 @@ public class CarRental extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Say 'Welcome to SB RENTAL CAR'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                System.out.println("Welcome to SB RENTAL CAR!");
             }
         });
         
@@ -36,7 +36,7 @@ public class CarRental extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Welcome!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

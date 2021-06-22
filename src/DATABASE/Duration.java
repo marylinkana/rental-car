@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -37,42 +38,42 @@ public class Duration implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "idduration")
-    private String idduration;
+    private int idduration;
     @Column(name = "start")
-    private String start;
+    private LocalDateTime start;
     @Column(name = "end")
-    private String end;
+    private LocalDateTime end;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "duration")
     private Collection<Rent> rentCollection;
 
     public Duration() {
     }
 
-    public Duration(String idduration) {
+    public Duration(int idduration) {
         this.idduration = idduration;
     }
 
-    public String getIdduration() {
+    public int getIdduration() {
         return idduration;
     }
 
-    public void setIdduration(String idduration) {
+    public void setIdduration(int idduration) {
         this.idduration = idduration;
     }
 
-    public String getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 
@@ -87,22 +88,7 @@ public class Duration implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idduration != null ? idduration.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Duration)) {
-            return false;
-        }
-        Duration other = (Duration) object;
-        if ((this.idduration == null && other.idduration != null) || (this.idduration != null && !this.idduration.equals(other.idduration))) {
-            return false;
-        }
-        return true;
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

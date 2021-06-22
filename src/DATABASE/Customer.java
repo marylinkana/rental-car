@@ -50,13 +50,13 @@ public class Customer implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name = "phonenumber")
-    private String phonenumber;
+    private int phonenumber;
     @Column(name = "age")
-    private String age;
+    private int age;
     @Column(name = "customertype")
     private String customertype;
     @Column(name = "discountlevel")
-    private String discountlevel;
+    private double discountlevel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Rent> rentCollection;
 
@@ -65,6 +65,15 @@ public class Customer implements Serializable {
 
     public Customer(String login) {
         this.login = login;
+    }
+    
+    public Customer(String name, String adress, String login, String password, int phoneNumber, int age) {
+        this.name = name;
+        this.adress = adress;
+        this.login = login;
+        this.password = password;
+        this.phonenumber = phoneNumber;
+        this.age = age;
     }
 
     public String getLogin() {
@@ -99,19 +108,19 @@ public class Customer implements Serializable {
         this.password = password;
     }
 
-    public String getPhonenumber() {
+    public int getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
+    public void setPhonenumber(int phonenumber) {
         this.phonenumber = phonenumber;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -123,11 +132,11 @@ public class Customer implements Serializable {
         this.customertype = customertype;
     }
 
-    public String getDiscountlevel() {
+    public double getDiscountlevel() {
         return discountlevel;
     }
 
-    public void setDiscountlevel(String discountlevel) {
+    public void setDiscountlevel(double discountlevel) {
         this.discountlevel = discountlevel;
     }
 

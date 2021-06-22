@@ -45,9 +45,9 @@ public class Car implements Serializable {
     @Column(name = "picture")
     private String picture;
     @Column(name = "priceperday")
-    private String priceperday;
+    private double priceperday;
     @Column(name = "discount")
-    private String discount;
+    private double discount;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
     private Collection<Rent> rentCollection;
 
@@ -56,6 +56,14 @@ public class Car implements Serializable {
 
     public Car(String immatriculation) {
         this.immatriculation = immatriculation;
+    }
+    
+    public Car(String description, String immatriculation, String item, double prices, double discount) {
+        this.description = description;
+        this.immatriculation = immatriculation;
+        this.picture = item;
+        this.discount = discount;
+        this.priceperday = prices;
     }
 
     public String getImmatriculation() {
@@ -82,19 +90,19 @@ public class Car implements Serializable {
         this.picture = picture;
     }
 
-    public String getPriceperday() {
+    public double getPriceperday() {
         return priceperday;
     }
 
-    public void setPriceperday(String priceperday) {
+    public void setPriceperday(double priceperday) {
         this.priceperday = priceperday;
     }
 
-    public String getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(String discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
