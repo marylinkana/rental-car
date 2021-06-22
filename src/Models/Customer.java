@@ -5,8 +5,6 @@
  */
 package Models;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author kanab
@@ -18,7 +16,6 @@ public class Customer {
     private String password;
     private int phoneNumber;
     private int age;
-    private ArrayList<Rental> rentals;
 
     public Customer(String name, String adress, String login, String password, int phoneNumber, int age) {
         this.name = name;
@@ -76,9 +73,4 @@ public class Customer {
     public void setAge(int age) {
         this.age = age;
     }
-    
-    public void rent(Car car){
-        rentals.add(new Rental(this, car));
-    }
-    
 }

@@ -13,10 +13,12 @@ public class Rental {
     private Customer customer;
     private Car car;
     private double rentalPrice;
+    private Duration duration;
 
-    public Rental(Customer customer, Car car) {
+    public Rental(Customer customer, Car car, Duration duration) {
         this.customer = customer;
         this.car = car;
+        this.duration = duration;
     }
 
     public Customer getCustomer() {
@@ -35,20 +37,20 @@ public class Rental {
         this.car = car;
     }
 
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
     public double getRentalPrice() {
         return rentalPrice;
     }
 
     public void setRentalPrice() {
-        if(customer instanceof BusinessCustomer){
-            this.rentalPrice = this.car.getPrices() + this.car.getPrices() * 0.25;
-        }
-        else if (customer instanceof IndividualCustomer) {
-            this.rentalPrice = this.car.getPrices() + this.car.getPrices() * 0.10;            
-        }
-        else {
-            this.rentalPrice = this.car.getPrices();           
-        }
+        // TODO: prendre en compte la réduction de la voiture et multiplier par la durée de réservation.
     }
          
 }
