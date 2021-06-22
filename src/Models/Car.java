@@ -13,15 +13,14 @@ public class Car {
     private String description;
     private String immatriculation;
     private String picture;
-    private double prices;
+    private double pricePerDay;
     private double discount; 
-    private double priceDiscount;
 
     public Car(String description, String immatriculation, String item, double prices) {
         this.description = description;
         this.immatriculation = immatriculation;
         this.picture = item;
-        this.prices = prices;
+        this.pricePerDay = prices;
     }
     
     public Car(String description, String immatriculation, String item, double prices, double discount) {
@@ -29,8 +28,7 @@ public class Car {
         this.immatriculation = immatriculation;
         this.picture = item;
         this.discount = discount;
-        this.prices = prices;
-        this.setPriceDiscount();
+        this.pricePerDay = prices;
     }
 
     public String getDescription() {
@@ -57,12 +55,12 @@ public class Car {
         this.picture = picture;
     }
 
-    public double getPrices() {
-        return prices;
+    public double getPricePerDay() {
+        return pricePerDay;
     }
 
-    public void setPrices(double prices) {
-        this.prices = prices;
+    public void setPricePerDay(double pricePerDay) {
+        this.pricePerDay = pricePerDay;
     }
 
     public double getDiscount() {
@@ -71,18 +69,7 @@ public class Car {
 
     public void setDiscount(double discount) {
         this.discount = discount;
-        this.setPriceDiscount();
 
     }
-    
-    public double getPriceDiscount() {
-        return priceDiscount;
-    }
-
-    private void setPriceDiscount() {
-        this.priceDiscount = this.prices + this.prices * this.discount;
-    }
-    
-    
-
+       
 }
