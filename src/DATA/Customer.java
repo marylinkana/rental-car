@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATABASE;
+package DATA;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")
     , @NamedQuery(name = "Customer.findByPhonenumber", query = "SELECT c FROM Customer c WHERE c.phonenumber = :phonenumber")
     , @NamedQuery(name = "Customer.findByAge", query = "SELECT c FROM Customer c WHERE c.age = :age")
-    , @NamedQuery(name = "Customer.findByCustomertype", query = "SELECT c FROM Customer c WHERE c.customertype = :customertype")
+    , @NamedQuery(name = "Customer.findByUserlevel", query = "SELECT c FROM Customer c WHERE c.userlevel = :userlevel")
     , @NamedQuery(name = "Customer.findByDiscountlevel", query = "SELECT c FROM Customer c WHERE c.discountlevel = :discountlevel")})
 public class Customer implements Serializable {
 
@@ -50,13 +53,15 @@ public class Customer implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name = "phonenumber")
-    private int phonenumber;
+    private Integer phonenumber;
     @Column(name = "age")
-    private int age;
-    @Column(name = "customertype")
-    private String customertype;
+    @Temporal(TemporalType.DATE)
+    private Date age;
+    @Column(name = "userlevel")
+    private String userlevel;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "discountlevel")
-    private double discountlevel;
+    private Double discountlevel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Collection<Rent> rentCollection;
 
@@ -65,15 +70,6 @@ public class Customer implements Serializable {
 
     public Customer(String login) {
         this.login = login;
-    }
-    
-    public Customer(String name, String adress, String login, String password, int phoneNumber, int age) {
-        this.name = name;
-        this.adress = adress;
-        this.login = login;
-        this.password = password;
-        this.phonenumber = phoneNumber;
-        this.age = age;
     }
 
     public String getLogin() {
@@ -108,35 +104,35 @@ public class Customer implements Serializable {
         this.password = password;
     }
 
-    public int getPhonenumber() {
+    public Integer getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(int phonenumber) {
+    public void setPhonenumber(Integer phonenumber) {
         this.phonenumber = phonenumber;
     }
 
-    public int getAge() {
+    public Date getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Date age) {
         this.age = age;
     }
 
-    public String getCustomertype() {
-        return customertype;
+    public String getUserlevel() {
+        return userlevel;
     }
 
-    public void setCustomertype(String customertype) {
-        this.customertype = customertype;
+    public void setUserlevel(String userlevel) {
+        this.userlevel = userlevel;
     }
 
-    public double getDiscountlevel() {
+    public Double getDiscountlevel() {
         return discountlevel;
     }
 
-    public void setDiscountlevel(double discountlevel) {
+    public void setDiscountlevel(Double discountlevel) {
         this.discountlevel = discountlevel;
     }
 
@@ -171,7 +167,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "DATABASE.Customer[ login=" + login + " ]";
+        return "DATA.Customer[ login=" + login + " ]";
     }
     
 }

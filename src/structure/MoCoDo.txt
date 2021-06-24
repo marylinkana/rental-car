@@ -1,4 +1,4 @@
-CUSTOMER: login, adress, name, password, phoneNumber, age, customerType, discountLevel
+CUSTOMER: login, adress, name, password, phoneNumber, age, userLevel, discountLevel
 Rent, 0N CAR, 0N CUSTOMER, 1N DURATION
 CAR: immatriculation, description, picture, pricePerDay, discount
 
@@ -6,7 +6,7 @@ DURATION : idDuration, start, end
 
 
 
-CUSTOMER ( login, adress, name, password, phoneNumber, age, customerType, discountLevel )
+CUSTOMER ( login, adress, name, password, phoneNumber, age, userLevel, discountLevel )
 Rent ( immatriculation, login, idDuration )
 CAR ( immatriculation, description, picture, pricePerDay, discount )
 DURATION ( idDuration, start, end )

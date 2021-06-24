@@ -10,22 +10,22 @@ package Models;
  * @author kanab
  */
 public class Rental {
-    private Customer customer;
+    private User customer;
     private Car car;
     private double rentalPrice;
     private Duration duration;
 
-    public Rental(Customer customer, Car car, Duration duration) {
+    public Rental(User customer, Car car, Duration duration) {
         this.customer = customer;
         this.car = car;
         this.duration = duration;
     }
 
-    public Customer getCustomer() {
+    public User getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(User customer) {
         this.customer = customer;
     }
 

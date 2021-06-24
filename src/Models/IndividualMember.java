@@ -9,24 +9,24 @@ package Models;
  *
  * @author kanab
  */
-public class IndividualCustomer extends Customer{
-    private String memberType;
+public class IndividualMember extends User{
+    private String userLevel;
     private double discountLevel;
 
-    public IndividualCustomer(Customer customer) {
+    public IndividualMember(User customer) {
         super(customer.getName(), customer.getAdress(), customer.getLogin(), 
                 customer.getPassword(), customer.getPhoneNumber(), customer.getAge());
-        this.memberType = "INDIVIDUAL MEMBER";
+        this.userLevel = "INDIVIDUAL MEMBER";
         this.discountLevel = 0.10;
         
     }
 
-    public String getMemberType() {
-        return memberType;
+    public String getUserLevel() {
+        return userLevel;
     }
 
-    public void setMemberType(String memberType) {
-        this.memberType = memberType;
+    public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
     }
 
     public double getDiscountLevel() {

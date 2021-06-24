@@ -9,7 +9,7 @@ package Models;
  *
  * @author kanab
  */
-public class Customer {
+public abstract class User {
     private String name;
     private String adress;
     private String login;
@@ -17,7 +17,7 @@ public class Customer {
     private int phoneNumber;
     private int age;
 
-    public Customer(String name, String adress, String login, String password, int phoneNumber, int age) {
+    public User(String name, String adress, String login, String password, int phoneNumber, int age) {
         this.name = name;
         this.adress = adress;
         this.login = login;

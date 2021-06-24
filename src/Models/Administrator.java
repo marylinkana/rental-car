@@ -9,15 +9,15 @@ package Models;
  *
  * @author kanab
  */
-public class BusinessMember extends User{
+public class Administrator extends User{
     private String userLevel;
     private double discountLevel;
 
-    public BusinessMember(User customer) {
-        super(customer.getName(), customer.getAdress(), customer.getLogin(), 
-                customer.getPassword(), customer.getPhoneNumber(), customer.getAge());
-        this.userLevel = "BUSINESS MEMBER";
-        this.discountLevel = 0.10;
+    public Administrator(User user) {
+        super(user.getName(), user.getAdress(), user.getLogin(), 
+                user.getPassword(), user.getPhoneNumber(), user.getAge());
+        this.userLevel = "Administrator";
+        this.discountLevel = 0.15;
         
     }
 

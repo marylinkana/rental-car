@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author kanab
  */
-public class CarRental extends Application {
+public class Admin extends Application {
         
     @Override
     public void start(Stage primaryStage) {

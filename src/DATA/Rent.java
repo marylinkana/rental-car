@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATABASE;
+package DATA;
 
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
@@ -49,7 +49,7 @@ public class Rent implements Serializable {
         this.rentPK = rentPK;
     }
 
-    public Rent(String immatriculation, String login, String idduration) {
+    public Rent(String immatriculation, String login, short idduration) {
         this.rentPK = new RentPK(immatriculation, login, idduration);
     }
 
@@ -107,7 +107,7 @@ public class Rent implements Serializable {
 
     @Override
     public String toString() {
-        return "DATABASE.Rent[ rentPK=" + rentPK + " ]";
+        return "DATA.Rent[ rentPK=" + rentPK + " ]";
     }
     
 }
