@@ -7,6 +7,9 @@ package Entities;
 
 import Controllers.BDSession;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -20,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -73,14 +77,38 @@ public class User implements Serializable {
         this.login = login;
         this.password = password;
     }
+
+    public User(String login, String adress, String name, String password, Integer phonenumber, Date age, String userlevel, Double discountlevel) {
+        this.login = login;
+        this.adress = adress;
+        this.name = name;
+        this.password = password;
+        this.phonenumber = phonenumber;
+        this.age = age;
+        this.userlevel = userlevel;
+        this.discountlevel = discountlevel;
+    }
     
-    public boolean connection(){
+    public boolean isConnect(){
         User personne = BDSession.getEM().find(User.class, this.login);
-        if (personne != null && (this.password).equals(personne.getPassword())) {
+        if (personne != null && sha1Encode(this.password).equals(personne.getPassword().toUpperCase())) {
           System.out.println("Wecomme : " + String.valueOf(personne.name));
           return true;
         }
+        System.out.println(String.valueOf(sha1Encode(this.password)));
         return false;
+    }
+    
+    private String sha1Encode(String password){
+        String sha1 = null;
+        try {
+            MessageDigest msdDigest = MessageDigest.getInstance("sha-1");
+            msdDigest.update(password.getBytes("utf-8"), 0, password.length());
+            sha1 = DatatypeConverter.printHexBinary(msdDigest.digest());
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            System.out.println("Entities.User.sha1Encode()");
+        }
+        return sha1;
     }
 
     public String getLogin() {

@@ -13,12 +13,10 @@ import Entities.User;
  */
 public class Login {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        User test = new User("test2@gm.com", "tutu");
-        System.out.println(test.connection());
+    public static void verify(String login, String password) {
+        User test = new User(login, password);
+        System.out.println(test.isConnect()); 
+        // TODO : Call the appropriate view
     }
     
 }
