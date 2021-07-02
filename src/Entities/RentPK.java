@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATABASE;
+package Entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -25,12 +25,12 @@ public class RentPK implements Serializable {
     private String login;
     @Basic(optional = false)
     @Column(name = "idduration")
-    private String idduration;
+    private short idduration;
 
     public RentPK() {
     }
 
-    public RentPK(String immatriculation, String login, String idduration) {
+    public RentPK(String immatriculation, String login, short idduration) {
         this.immatriculation = immatriculation;
         this.login = login;
         this.idduration = idduration;
@@ -52,11 +52,11 @@ public class RentPK implements Serializable {
         this.login = login;
     }
 
-    public String getIdduration() {
+    public short getIdduration() {
         return idduration;
     }
 
-    public void setIdduration(String idduration) {
+    public void setIdduration(short idduration) {
         this.idduration = idduration;
     }
 
@@ -65,7 +65,7 @@ public class RentPK implements Serializable {
         int hash = 0;
         hash += (immatriculation != null ? immatriculation.hashCode() : 0);
         hash += (login != null ? login.hashCode() : 0);
-        hash += (idduration != null ? idduration.hashCode() : 0);
+        hash += (int) idduration;
         return hash;
     }
 
@@ -82,7 +82,7 @@ public class RentPK implements Serializable {
         if ((this.login == null && other.login != null) || (this.login != null && !this.login.equals(other.login))) {
             return false;
         }
-        if ((this.idduration == null && other.idduration != null) || (this.idduration != null && !this.idduration.equals(other.idduration))) {
+        if (this.idduration != other.idduration) {
             return false;
         }
         return true;
@@ -90,7 +90,7 @@ public class RentPK implements Serializable {
 
     @Override
     public String toString() {
-        return "DATABASE.RentPK[ immatriculation=" + immatriculation + ", login=" + login + ", idduration=" + idduration + " ]";
+        return "Controllers.RentPK[ immatriculation=" + immatriculation + ", login=" + login + ", idduration=" + idduration + " ]";
     }
     
 }

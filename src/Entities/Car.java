@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATABASE;
+package Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -44,10 +44,11 @@ public class Car implements Serializable {
     private String description;
     @Column(name = "picture")
     private String picture;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "priceperday")
-    private double priceperday;
+    private Double priceperday;
     @Column(name = "discount")
-    private double discount;
+    private Double discount;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
     private Collection<Rent> rentCollection;
 
@@ -56,14 +57,6 @@ public class Car implements Serializable {
 
     public Car(String immatriculation) {
         this.immatriculation = immatriculation;
-    }
-    
-    public Car(String description, String immatriculation, String item, double prices, double discount) {
-        this.description = description;
-        this.immatriculation = immatriculation;
-        this.picture = item;
-        this.discount = discount;
-        this.priceperday = prices;
     }
 
     public String getImmatriculation() {
@@ -90,19 +83,19 @@ public class Car implements Serializable {
         this.picture = picture;
     }
 
-    public double getPriceperday() {
+    public Double getPriceperday() {
         return priceperday;
     }
 
-    public void setPriceperday(double priceperday) {
+    public void setPriceperday(Double priceperday) {
         this.priceperday = priceperday;
     }
 
-    public double getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
@@ -137,7 +130,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "DATABASE.Car[ immatriculation=" + immatriculation + " ]";
+        return "Controllers.Car[ immatriculation=" + immatriculation + " ]";
     }
     
 }

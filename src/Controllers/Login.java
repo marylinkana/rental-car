@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views;
-import java.time.LocalDate;  // import the LocalDate class
+package Controllers;
+
+import Entities.User;
 
 /**
  *
  * @author kanab
  */
-public class test {
+public class Login {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-
-    LocalDate myObj = LocalDate.now();  // Create a date object
-    System.out.println(myObj);  // Display the current date
-  }  
-}  
-
-   
+        User test = new User("test2@gm.com", "tutu");
+        System.out.println(test.connection());
+    }
+    
+}

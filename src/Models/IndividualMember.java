@@ -1,16 +1,15 @@
 package Models;
 
-public class BusinessMember extends User {
+public class IndividualMember extends User {
 
     private String userLevel;
+
     private double discountLevel;
-    private User user;
-    
-    public BusinessMember(String userLevel, double discountLevel,User user) {
+
+    public IndividualMember(String userLevel, double discountLevel,User user) {
         super(user.getName(), user.getAdress(), user.getLogin(), user.getPassword(), user.getPhoneNumber(), user.getAge());
         this.userLevel = userLevel;
         this.discountLevel = discountLevel;
-        this.user = user;
     }
 
     public String getUserLevel() {

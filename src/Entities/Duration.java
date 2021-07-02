@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATABASE;
+package Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,9 +17,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import java.time.LocalDateTime;
 
 /**
  *
@@ -38,42 +40,44 @@ public class Duration implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "idduration")
-    private int idduration;
+    private Short idduration;
     @Column(name = "start")
-    private LocalDateTime start;
+    @Temporal(TemporalType.DATE)
+    private Date start;
     @Column(name = "end")
-    private LocalDateTime end;
+    @Temporal(TemporalType.DATE)
+    private Date end;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "duration")
     private Collection<Rent> rentCollection;
 
     public Duration() {
     }
 
-    public Duration(int idduration) {
+    public Duration(Short idduration) {
         this.idduration = idduration;
     }
 
-    public int getIdduration() {
+    public Short getIdduration() {
         return idduration;
     }
 
-    public void setIdduration(int idduration) {
+    public void setIdduration(Short idduration) {
         this.idduration = idduration;
     }
 
-    public LocalDateTime getStart() {
+    public Date getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(Date start) {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
+    public Date getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDateTime end) {
+    public void setEnd(Date end) {
         this.end = end;
     }
 
@@ -88,12 +92,27 @@ public class Duration implements Serializable {
 
     @Override
     public int hashCode() {
-        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+        int hash = 0;
+        hash += (idduration != null ? idduration.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Duration)) {
+            return false;
+        }
+        Duration other = (Duration) object;
+        if ((this.idduration == null && other.idduration != null) || (this.idduration != null && !this.idduration.equals(other.idduration))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "DATABASE.Duration[ idduration=" + idduration + " ]";
+        return "Controllers.Duration[ idduration=" + idduration + " ]";
     }
     
 }

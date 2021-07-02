@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATABASE;
+package Entities;
 
+import Controllers.BDSession;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -24,19 +28,19 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author kanab
  */
 @Entity
-@Table(name = "customer")
+@Table(name = "user")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
-    , @NamedQuery(name = "Customer.findByLogin", query = "SELECT c FROM Customer c WHERE c.login = :login")
-    , @NamedQuery(name = "Customer.findByAdress", query = "SELECT c FROM Customer c WHERE c.adress = :adress")
-    , @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name")
-    , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")
-    , @NamedQuery(name = "Customer.findByPhonenumber", query = "SELECT c FROM Customer c WHERE c.phonenumber = :phonenumber")
-    , @NamedQuery(name = "Customer.findByAge", query = "SELECT c FROM Customer c WHERE c.age = :age")
-    , @NamedQuery(name = "Customer.findByCustomertype", query = "SELECT c FROM Customer c WHERE c.customertype = :customertype")
-    , @NamedQuery(name = "Customer.findByDiscountlevel", query = "SELECT c FROM Customer c WHERE c.discountlevel = :discountlevel")})
-public class Customer implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    , @NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login")
+    , @NamedQuery(name = "User.findByAdress", query = "SELECT u FROM User u WHERE u.adress = :adress")
+    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.findByPhonenumber", query = "SELECT u FROM User u WHERE u.phonenumber = :phonenumber")
+    , @NamedQuery(name = "User.findByAge", query = "SELECT u FROM User u WHERE u.age = :age")
+    , @NamedQuery(name = "User.findByUserlevel", query = "SELECT u FROM User u WHERE u.userlevel = :userlevel")
+    , @NamedQuery(name = "User.findByDiscountlevel", query = "SELECT u FROM User u WHERE u.discountlevel = :discountlevel")})
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,30 +54,33 @@ public class Customer implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name = "phonenumber")
-    private int phonenumber;
+    private Integer phonenumber;
     @Column(name = "age")
-    private int age;
-    @Column(name = "customertype")
-    private String customertype;
+    @Temporal(TemporalType.DATE)
+    private Date age;
+    @Column(name = "userlevel")
+    private String userlevel;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "discountlevel")
-    private double discountlevel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Double discountlevel;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Rent> rentCollection;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String login) {
-        this.login = login;
-    }
-    
-    public Customer(String name, String adress, String login, String password, int phoneNumber, int age) {
-        this.name = name;
-        this.adress = adress;
+    public User(String login, String password) {
         this.login = login;
         this.password = password;
-        this.phonenumber = phoneNumber;
-        this.age = age;
+    }
+    
+    public boolean connection(){
+        User personne = BDSession.getEM().find(User.class, this.login);
+        if (personne != null && (this.password).equals(personne.getPassword())) {
+          System.out.println("Wecomme : " + String.valueOf(personne.name));
+          return true;
+        }
+        return false;
     }
 
     public String getLogin() {
@@ -108,35 +115,35 @@ public class Customer implements Serializable {
         this.password = password;
     }
 
-    public int getPhonenumber() {
+    public Integer getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(int phonenumber) {
+    public void setPhonenumber(Integer phonenumber) {
         this.phonenumber = phonenumber;
     }
 
-    public int getAge() {
+    public Date getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Date age) {
         this.age = age;
     }
 
-    public String getCustomertype() {
-        return customertype;
+    public String getUserlevel() {
+        return userlevel;
     }
 
-    public void setCustomertype(String customertype) {
-        this.customertype = customertype;
+    public void setUserlevel(String userlevel) {
+        this.userlevel = userlevel;
     }
 
-    public double getDiscountlevel() {
+    public Double getDiscountlevel() {
         return discountlevel;
     }
 
-    public void setDiscountlevel(double discountlevel) {
+    public void setDiscountlevel(Double discountlevel) {
         this.discountlevel = discountlevel;
     }
 
@@ -159,10 +166,10 @@ public class Customer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Customer)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Customer other = (Customer) object;
+        User other = (User) object;
         if ((this.login == null && other.login != null) || (this.login != null && !this.login.equals(other.login))) {
             return false;
         }
@@ -171,7 +178,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "DATABASE.Customer[ login=" + login + " ]";
+        return "Controllers.User[ login=" + login + " ]";
     }
     
 }
