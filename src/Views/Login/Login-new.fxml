@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Login.LoginController">
+   <children>
+      <MenuBar id="menu" layoutY="-1.0" prefHeight="40.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView id="image" fitHeight="361.0" fitWidth="355.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField id="password" layoutX="343.0" layoutY="173.0" prefHeight="25.0" prefWidth="182.0" promptText="Login Password" />
+      <TextField id="email" layoutX="343.0" layoutY="131.0" prefHeight="25.0" prefWidth="182.0" promptText="Login email" />
+      <Label layoutX="355.0" layoutY="80.0" text="CONNECTION" textFill="#1b1b1b">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button id="submit" layoutX="410.0" layoutY="219.0" mnemonicParsing="false" onAction="#connection" text="Login" />
+   </children>
+</Pane>
