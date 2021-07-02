@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATA;
+package Entities;
 
+import Controllers.BDSession;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -27,19 +28,19 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author kanab
  */
 @Entity
-@Table(name = "customer")
+@Table(name = "user")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
-    , @NamedQuery(name = "Customer.findByLogin", query = "SELECT c FROM Customer c WHERE c.login = :login")
-    , @NamedQuery(name = "Customer.findByAdress", query = "SELECT c FROM Customer c WHERE c.adress = :adress")
-    , @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name")
-    , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")
-    , @NamedQuery(name = "Customer.findByPhonenumber", query = "SELECT c FROM Customer c WHERE c.phonenumber = :phonenumber")
-    , @NamedQuery(name = "Customer.findByAge", query = "SELECT c FROM Customer c WHERE c.age = :age")
-    , @NamedQuery(name = "Customer.findByUserlevel", query = "SELECT c FROM Customer c WHERE c.userlevel = :userlevel")
-    , @NamedQuery(name = "Customer.findByDiscountlevel", query = "SELECT c FROM Customer c WHERE c.discountlevel = :discountlevel")})
-public class Customer implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+    , @NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login")
+    , @NamedQuery(name = "User.findByAdress", query = "SELECT u FROM User u WHERE u.adress = :adress")
+    , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+    , @NamedQuery(name = "User.findByPhonenumber", query = "SELECT u FROM User u WHERE u.phonenumber = :phonenumber")
+    , @NamedQuery(name = "User.findByAge", query = "SELECT u FROM User u WHERE u.age = :age")
+    , @NamedQuery(name = "User.findByUserlevel", query = "SELECT u FROM User u WHERE u.userlevel = :userlevel")
+    , @NamedQuery(name = "User.findByDiscountlevel", query = "SELECT u FROM User u WHERE u.discountlevel = :discountlevel")})
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,14 +63,24 @@ public class Customer implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "discountlevel")
     private Double discountlevel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Rent> rentCollection;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String login) {
+    public User(String login, String password) {
         this.login = login;
+        this.password = password;
+    }
+    
+    public boolean connection(){
+        User personne = BDSession.getEM().find(User.class, this.login);
+        if (personne != null && (this.password).equals(personne.getPassword())) {
+          System.out.println("Wecomme : " + String.valueOf(personne.name));
+          return true;
+        }
+        return false;
     }
 
     public String getLogin() {
@@ -155,10 +166,10 @@ public class Customer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Customer)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Customer other = (Customer) object;
+        User other = (User) object;
         if ((this.login == null && other.login != null) || (this.login != null && !this.login.equals(other.login))) {
             return false;
         }
@@ -167,7 +178,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "DATA.Customer[ login=" + login + " ]";
+        return "Controllers.User[ login=" + login + " ]";
     }
     
 }

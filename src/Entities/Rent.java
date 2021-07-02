@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATA;
+package Entities;
 
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
@@ -37,7 +37,7 @@ public class Rent implements Serializable {
     private Duration duration;
     @JoinColumn(name = "login", referencedColumnName = "login", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Customer customer;
+    private User user;
     @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Car car;
@@ -69,12 +69,12 @@ public class Rent implements Serializable {
         this.duration = duration;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Car getCar() {
@@ -107,7 +107,7 @@ public class Rent implements Serializable {
 
     @Override
     public String toString() {
-        return "DATA.Rent[ rentPK=" + rentPK + " ]";
+        return "Controllers.Rent[ rentPK=" + rentPK + " ]";
     }
     
 }

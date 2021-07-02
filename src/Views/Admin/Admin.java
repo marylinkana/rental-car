@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views;
+package Views.Admin;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author kanab
  */
-public class Rent extends Application {
+public class Admin extends Application {
         
     @Override
     public void start(Stage primaryStage) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATA;
+package Entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -90,7 +90,7 @@ public class RentPK implements Serializable {
 
     @Override
     public String toString() {
-        return "DATA.RentPK[ immatriculation=" + immatriculation + ", login=" + login + ", idduration=" + idduration + " ]";
+        return "Controllers.RentPK[ immatriculation=" + immatriculation + ", login=" + login + ", idduration=" + idduration + " ]";
     }
     
 }

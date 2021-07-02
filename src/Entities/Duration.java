@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DATA;
+package Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -112,7 +112,7 @@ public class Duration implements Serializable {
 
     @Override
     public String toString() {
-        return "DATA.Duration[ idduration=" + idduration + " ]";
+        return "Controllers.Duration[ idduration=" + idduration + " ]";
     }
     
 }
