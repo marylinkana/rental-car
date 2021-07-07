@@ -5,7 +5,10 @@
  */
 package Entities;
 
+import Controllers.BDSession;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -16,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,7 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Duration.findAll", query = "SELECT d FROM Duration d")
     , @NamedQuery(name = "Duration.findByIdduration", query = "SELECT d FROM Duration d WHERE d.idduration = :idduration")
     , @NamedQuery(name = "Duration.findByStart", query = "SELECT d FROM Duration d WHERE d.start = :start")
-    , @NamedQuery(name = "Duration.findByEnd", query = "SELECT d FROM Duration d WHERE d.end = :end")})
+    , @NamedQuery(name = "Duration.findByEnd", query = "SELECT d FROM Duration d WHERE d.end = :end")
+    //, @NamedQuery(name = "Duration.InsertNewDuration", query = "INSERT INTO Duration (start, end) VALUES (:start, :end)")
+})
 public class Duration implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,7 +62,17 @@ public class Duration implements Serializable {
     public Duration(Short idduration) {
         this.idduration = idduration;
     }
-
+    
+    public Duration(LocalDate start, LocalDate end) {
+        Date dateStart = Date.from(start.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        Date dateEnd = Date.from(end.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        BDSession.getEM().getTransaction().begin();
+        Query query = BDSession.getEM().createNativeQuery("Duration.InsertNewDuration", Duration.class);
+        query.setParameter(1, dateStart);
+        query.setParameter(2, dateEnd);
+        query.executeUpdate();
+    }
+    
     public Short getIdduration() {
         return idduration;
     }

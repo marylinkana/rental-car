@@ -5,7 +5,6 @@
  */
 package Controllers;
 
-import Entities.User;
 import javax.persistence.*;
 
 public class BDSession { 

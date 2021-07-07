@@ -5,8 +5,8 @@
  */
 package Controllers;
 
-import Entities.User;
-import java.util.Date;
+import java.time.LocalDate;
+import javax.persistence.Query;
 
 /**
  *
@@ -14,7 +14,13 @@ import java.util.Date;
  */
 public class Register {
     
-    public static void create(String login, String adress, String name, String password, Integer phonenumber, Date age, String userlevel, Double discountlevel) {
-        User user = new User(login, adress, name, password, phonenumber, age, userlevel, discountlevel);
+    public static void create(String login, String adress, String name, String password, int phonenumber, LocalDate age) {
+        Models.User newUser = new Models.User(name, adress, login, password, phonenumber, age);
+        Entities.User.create(newUser);
+    }
+    
+    public static void main(String[] args){
+       Query query = BDSession.getEM().createQuery("INSERT INTO user (name, adress, login, password, phonenumber, age) VALUES (test, test, test, test, test, 01/01/2022)");
+       query.executeUpdate();
     }
 }

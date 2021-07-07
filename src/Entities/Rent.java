@@ -5,6 +5,7 @@
  */
 package Entities;
 
+import Controllers.BDSession;
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,7 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Rent.findAll", query = "SELECT r FROM Rent r")
     , @NamedQuery(name = "Rent.findByImmatriculation", query = "SELECT r FROM Rent r WHERE r.rentPK.immatriculation = :immatriculation")
     , @NamedQuery(name = "Rent.findByLogin", query = "SELECT r FROM Rent r WHERE r.rentPK.login = :login")
-    , @NamedQuery(name = "Rent.findByIdduration", query = "SELECT r FROM Rent r WHERE r.rentPK.idduration = :idduration")})
+    , @NamedQuery(name = "Rent.findByIdduration", query = "SELECT r FROM Rent r WHERE r.rentPK.idduration = :idduration")
+    //, @NamedQuery(name = "Rent.InsertNewRent", query = "INSERT INTO Rent (immatriculation, login, duration) VALUES (:immatriculation, :login, :duration)")
+})
 public class Rent implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +55,15 @@ public class Rent implements Serializable {
 
     public Rent(String immatriculation, String login, short idduration) {
         this.rentPK = new RentPK(immatriculation, login, idduration);
+    }
+        
+    public Rent(String immatriculation, String login, int idduration){
+        BDSession.getEM().getTransaction().begin();
+        Query query = BDSession.getEM().createNativeQuery("Rent.InsertNewRent", Rent.class);
+        query.setParameter(1, immatriculation);
+        query.setParameter(2, login);
+        query.setParameter(3, idduration);
+        query.executeUpdate();
     }
 
     public RentPK getRentPK() {

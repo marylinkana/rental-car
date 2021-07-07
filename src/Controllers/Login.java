@@ -7,6 +7,7 @@ package Controllers;
 
 import Entities.User;
 
+
 /**
  *
  * @author kanab
@@ -14,9 +15,12 @@ import Entities.User;
 public class Login {
 
     public static void verify(String login, String password) {
-        User test = new User(login, password);
-        System.out.println(test.isConnect()); 
+        System.out.println(User.isConnect(login, password)); 
         // TODO : Call the appropriate view
+    }
+    
+    public static void main(String[] args){
+        verify("test2@gm.com", "toto" );
     }
     
 }
