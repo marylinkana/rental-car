@@ -27,8 +27,7 @@ public class LoginController implements Initializable {
     }    
 
     @FXML
-    public void submit(ActionEvent event) {
-        System.out.println(event.toString());
+    private void connection(ActionEvent event) {
     }
     
 }
