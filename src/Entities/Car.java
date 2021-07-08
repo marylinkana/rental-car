@@ -5,16 +5,21 @@
  */
 package Entities;
 
+import Controllers.BDSession;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -32,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Car.findByDescription", query = "SELECT c FROM Car c WHERE c.description = :description")
     , @NamedQuery(name = "Car.findByPicture", query = "SELECT c FROM Car c WHERE c.picture = :picture")
     , @NamedQuery(name = "Car.findByPriceperday", query = "SELECT c FROM Car c WHERE c.priceperday = :priceperday")
-    , @NamedQuery(name = "Car.findByDiscount", query = "SELECT c FROM Car c WHERE c.discount = :discount")})
+    , @NamedQuery(name = "Car.findByDiscount", query = "SELECT c FROM Car c WHERE c.discount = :discount")
+})
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,10 +61,37 @@ public class Car implements Serializable {
     public Car() {
     }
 
-    public Car(String immatriculation) {
-        this.immatriculation = immatriculation;
+    public Car(String immatriculation, String description, double pricePerDay) {
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        String sql = "INSERT INTO Car (immatriculation, description, priceperday) VALUES (?, ?, ?)";
+    
+        Query query = em.createNativeQuery(sql);        
+        query.setParameter(1, immatriculation);
+        query.setParameter(2, description);
+        query.setParameter(3, pricePerDay);
+        query.executeUpdate();
+        
+        tx.commit();
+        em.close();
+    }
+    
+    public static List<Car> getAllCars(){
+        BDSession.getEM().getTransaction().begin();
+        Query query = BDSession.getEM().createNativeQuery("Car.findAll", Car.class);
+        return query.getResultList();
+    }
+    
+    public Double getDiscount() {
+        return discount;
     }
 
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+    
     public String getImmatriculation() {
         return immatriculation;
     }
@@ -89,14 +122,6 @@ public class Car implements Serializable {
 
     public void setPriceperday(Double priceperday) {
         this.priceperday = priceperday;
-    }
-
-    public Double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Double discount) {
-        this.discount = discount;
     }
 
     @XmlTransient

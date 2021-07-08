@@ -7,19 +7,27 @@ package Entities;
 
 import Controllers.BDSession;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,7 +47,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByPhonenumber", query = "SELECT u FROM User u WHERE u.phonenumber = :phonenumber")
     , @NamedQuery(name = "User.findByAge", query = "SELECT u FROM User u WHERE u.age = :age")
     , @NamedQuery(name = "User.findByUserlevel", query = "SELECT u FROM User u WHERE u.userlevel = :userlevel")
-    , @NamedQuery(name = "User.findByDiscountlevel", query = "SELECT u FROM User u WHERE u.discountlevel = :discountlevel")})
+    , @NamedQuery(name = "User.findByDiscountlevel", query = "SELECT u FROM User u WHERE u.discountlevel = :discountlevel")
+})
+
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,13 +84,57 @@ public class User implements Serializable {
         this.password = password;
     }
     
-    public boolean connection(){
-        User personne = BDSession.getEM().find(User.class, this.login);
-        if (personne != null && (this.password).equals(personne.getPassword())) {
+    public void rent(String immatriculation, Short idduration){
+        Rent rent = new Rent(this.login, immatriculation, idduration);
+    }
+
+    public static void create(Models.User user) {
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        
+        String sql = "INSERT INTO user (name, adress, login, password, phonenumber, age) VALUES (?, ?, ?, ?, ?, ?)";
+    
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, user.getName());
+        query.setParameter(2, user.getAdress());
+        query.setParameter(3, user.getLogin());
+        query.setParameter(4, sha1Encode(user.getPassword()));
+        query.setParameter(5, user.getPhoneNumber());
+        query.setParameter(6, user.getAge());
+        query.executeUpdate();
+        
+        tx.commit();
+        em.close();
+    }
+    
+    public static boolean isConnect(String login, String password){
+        User personne = BDSession.getEM().find(User.class, login);
+        if (personne != null && sha1Encode(password).equals(personne.getPassword().toUpperCase())) {
           System.out.println("Wecomme : " + String.valueOf(personne.name));
           return true;
         }
         return false;
+    }
+    
+    private static String sha1Encode(String password){
+        String sha1 = null;
+        try {
+            MessageDigest msdDigest = MessageDigest.getInstance("sha-1");
+            msdDigest.update(password.getBytes("utf-8"), 0, password.length());
+            sha1 = DatatypeConverter.printHexBinary(msdDigest.digest());
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            System.out.println("Entities.User.sha1Encode()");
+        }
+        return sha1;
+    }
+    
+    public static List<User> getAllUsers(){
+        return BDSession.getEM().createNamedQuery("User.findAll").getResultList();
+    }
+    
+    public static User getByLogin(String login){
+        return BDSession.getEM().createNamedQuery("User.findByLogin", User.class).setParameter("login", login).getSingleResult();
     }
 
     public String getLogin() {

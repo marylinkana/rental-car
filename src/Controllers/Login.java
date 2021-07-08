@@ -7,18 +7,20 @@ package Controllers;
 
 import Entities.User;
 
+
 /**
  *
  * @author kanab
  */
 public class Login {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        User test = new User("test2@gm.com", "tutu");
-        System.out.println(test.connection());
+    public static void verify(String login, String password) {
+        System.out.println(User.isConnect(login, password)); 
+        // TODO : Call the appropriate view
+    }
+    
+    public static void main(String[] args){
+        verify("test2@gm.com", "toto" );
     }
     
 }

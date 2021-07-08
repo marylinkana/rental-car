@@ -8,10 +8,10 @@ public class Administrator extends User {
 
     private User user;
     
-    public Administrator(String userLevel, double discountLevel,User user) {
+    public Administrator(User user) {
         super(user.getName(), user.getAdress(), user.getLogin(), user.getPassword(), user.getPhoneNumber(), user.getAge());
-        this.userLevel = userLevel;
-        this.discountLevel = discountLevel;
+        this.userLevel = "ADMINISTRATOR";
+        this.discountLevel = 0.20;
         this.user = user;
     }
 

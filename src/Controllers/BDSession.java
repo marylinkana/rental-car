@@ -15,5 +15,16 @@ public class BDSession {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager;
     }
+    
+    public static void main(String[] args){
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        System.out.println(tx.isActive());
+        tx.commit();
+        System.out.println(tx.isActive());
+        tx.begin();
+        System.out.println(tx.isActive());
+    }
 
 }

@@ -6,10 +6,10 @@ public class IndividualMember extends User {
 
     private double discountLevel;
 
-    public IndividualMember(String userLevel, double discountLevel,User user) {
+    public IndividualMember(User user) {
         super(user.getName(), user.getAdress(), user.getLogin(), user.getPassword(), user.getPhoneNumber(), user.getAge());
-        this.userLevel = userLevel;
-        this.discountLevel = discountLevel;
+        this.userLevel = "INDIVIDUAL MEMBER";
+        this.discountLevel = 0.10;
     }
 
     public String getUserLevel() {

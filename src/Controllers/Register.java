@@ -5,72 +5,26 @@
  */
 package Controllers;
 
+import Models.NewCustomer;
+import Models.User;
+import java.util.Date;
+
+
 /**
  *
  * @author kanab
  */
-public abstract class Register {
-    private String name;
-    private String adress;
-    private String login;
-    private String password;
-    private int phoneNumber;
-    private int age;
-
-    public Register(String name, String adress, String login, String password, int phoneNumber, int age) {
-        this.name = name;
-        this.adress = adress;
-        this.login = login;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.age = age;
+public class Register {
+    
+    public static void newCustomer(String login, String adress, String name, String password, int phonenumber, Date age) {
+        User user = new User(name, adress, login, password, phonenumber, age);
+        NewCustomer newCustomer = new NewCustomer(user);
+        Entities.User.create(newCustomer);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+        
+    public static void main(String[] args){
+        Date age = new Date(2000, 01, 01);
+        newCustomer("test3", "test3", "test3", "test3", 0755525, age);
+        
     }
 }
