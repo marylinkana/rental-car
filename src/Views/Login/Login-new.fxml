@@ -38,17 +38,18 @@
             </Menu>
         </menus>
       </MenuBar>
-      <ImageView id="image" fitHeight="201.0" fitWidth="614.0" layoutX="7.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../var/folders/tm/6jk4cr3n1qvbd9q3klwnz1qc0000gn/T/TemporaryItems/(En%20enregistrement%20par%20screencaptureui)/Capture%20d’écran%202021-07-07%20à%2014.58.48.png" />
-         </image></ImageView>
       <TextField id="password" layoutX="68.0" layoutY="305.0" prefHeight="25.0" prefWidth="182.0" promptText="Login Password" />
       <TextField id="email" layoutX="68.0" layoutY="262.0" prefHeight="25.0" prefWidth="182.0" promptText="Login email" />
-      <Label layoutX="123.0" layoutY="185.0" text="LOGIN" textFill="#dd1111">
+      <Button id="submit" layoutX="131.0" layoutY="352.0" mnemonicParsing="false" onAction="#connection" text="Log on" textFill="#f20a0a" />
+      <ImageView fitHeight="212.0" fitWidth="600.0" layoutY="38.0">
+         <image>
+            <Image url="@../../../../Capture%20d’écran%202021-07-08%20à%2014.29.51.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="123.0" layoutY="193.0" text="LOGIN" textFill="#dd1111">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button id="submit" layoutX="135.0" layoutY="352.0" mnemonicParsing="false" onAction="#connection" text="Login" textFill="#f20a0a" />
    </children>
 </Pane>
