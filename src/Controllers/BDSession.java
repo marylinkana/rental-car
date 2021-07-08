@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entities.User;
 import javax.persistence.*;
 
 public class BDSession { 
@@ -13,6 +14,17 @@ public class BDSession {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CarRentalPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager;
+    }
+    
+    public static void main(String[] args){
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        System.out.println(tx.isActive());
+        tx.commit();
+        System.out.println(tx.isActive());
+        tx.begin();
+        System.out.println(tx.isActive());
     }
 
 }

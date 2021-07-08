@@ -9,6 +9,8 @@ import Controllers.BDSession;
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -29,7 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Rent.findByImmatriculation", query = "SELECT r FROM Rent r WHERE r.rentPK.immatriculation = :immatriculation")
     , @NamedQuery(name = "Rent.findByLogin", query = "SELECT r FROM Rent r WHERE r.rentPK.login = :login")
     , @NamedQuery(name = "Rent.findByIdduration", query = "SELECT r FROM Rent r WHERE r.rentPK.idduration = :idduration")
-    //, @NamedQuery(name = "Rent.InsertNewRent", query = "INSERT INTO Rent (immatriculation, login, duration) VALUES (:immatriculation, :login, :duration)")
 })
 public class Rent implements Serializable {
 
@@ -52,18 +53,22 @@ public class Rent implements Serializable {
     public Rent(RentPK rentPK) {
         this.rentPK = rentPK;
     }
-
-    public Rent(String immatriculation, String login, short idduration) {
-        this.rentPK = new RentPK(immatriculation, login, idduration);
-    }
         
     public Rent(String immatriculation, String login, int idduration){
-        BDSession.getEM().getTransaction().begin();
-        Query query = BDSession.getEM().createNativeQuery("Rent.InsertNewRent", Rent.class);
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        String sql = "INSERT INTO Rent (immatriculation, login, idduration) VALUES (?, ?, ?)";
+    
+        Query query = em.createNativeQuery(sql); 
         query.setParameter(1, immatriculation);
         query.setParameter(2, login);
         query.setParameter(3, idduration);
         query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
 
     public RentPK getRentPK() {

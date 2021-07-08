@@ -20,7 +20,7 @@ public class Rental {
 
     public static void newRent(String immatriculation, String login, LocalDate start, LocalDate end) {
         Duration duration = new Duration(start, end);
-        Rent newRent = new Rent(immatriculation, login, duration.getIdduration());
+        Rent rent = new Rent(immatriculation, login, Duration.getLastDurationId());
     }
     
     public static List<Car> getAllCars() {
@@ -28,7 +28,7 @@ public class Rental {
     }
     
     public static void main(String[] args){
-        
+        newRent("1234567", "test", LocalDate.now(), LocalDate.of(2021, 07, 10));
     }
     
 }

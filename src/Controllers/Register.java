@@ -5,8 +5,10 @@
  */
 package Controllers;
 
-import java.time.LocalDate;
-import javax.persistence.Query;
+import Models.NewCustomer;
+import Models.User;
+import java.util.Date;
+
 
 /**
  *
@@ -14,13 +16,15 @@ import javax.persistence.Query;
  */
 public class Register {
     
-    public static void create(String login, String adress, String name, String password, int phonenumber, LocalDate age) {
-        Models.User newUser = new Models.User(name, adress, login, password, phonenumber, age);
-        Entities.User.create(newUser);
+    public static void newCustomer(String login, String adress, String name, String password, int phonenumber, Date age) {
+        User user = new User(name, adress, login, password, phonenumber, age);
+        NewCustomer newCustomer = new NewCustomer(user);
+        Entities.User.create(newCustomer);
     }
-    
+        
     public static void main(String[] args){
-       Query query = BDSession.getEM().createQuery("INSERT INTO user (name, adress, login, password, phonenumber, age) VALUES (test, test, test, test, test, 01/01/2022)");
-       query.executeUpdate();
+        Date age = new Date(2000, 01, 01);
+        newCustomer("test3", "test3", "test3", "test3", 0755525, age);
+        
     }
 }

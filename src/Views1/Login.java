@@ -1,4 +1,4 @@
-package Views.Login;
+package Views1;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class Login extends Application {
     @Override
     public void start(Stage loginPage) throws Exception {
         Parent parent = FXMLLoader.load(
-            getClass().getResource("Retail.fxml"));
+            getClass().getResource("Login.fxml"));
         Scene scene = new Scene(parent);
         loginPage.setTitle("Login"); 
         loginPage.setScene(scene);

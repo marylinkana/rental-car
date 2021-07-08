@@ -11,10 +11,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,7 +41,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Duration.findByIdduration", query = "SELECT d FROM Duration d WHERE d.idduration = :idduration")
     , @NamedQuery(name = "Duration.findByStart", query = "SELECT d FROM Duration d WHERE d.start = :start")
     , @NamedQuery(name = "Duration.findByEnd", query = "SELECT d FROM Duration d WHERE d.end = :end")
-    //, @NamedQuery(name = "Duration.InsertNewDuration", query = "INSERT INTO Duration (start, end) VALUES (:start, :end)")
 })
 public class Duration implements Serializable {
 
@@ -64,17 +66,27 @@ public class Duration implements Serializable {
     }
     
     public Duration(LocalDate start, LocalDate end) {
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        
         Date dateStart = Date.from(start.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         Date dateEnd = Date.from(end.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        BDSession.getEM().getTransaction().begin();
-        Query query = BDSession.getEM().createNativeQuery("Duration.InsertNewDuration", Duration.class);
+        String sql = "INSERT INTO Duration (start, end) VALUES (?, ?)";
+    
+        Query query = em.createNativeQuery(sql); 
         query.setParameter(1, dateStart);
         query.setParameter(2, dateEnd);
         query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
     
-    public Short getIdduration() {
-        return idduration;
+    public static int getLastDurationId() {
+        List<Duration> durations = BDSession.getEM().createNamedQuery("Duration.findAll").getResultList();
+        int lastCase = durations.size() - 1;
+        return durations.get(lastCase).idduration;
     }
 
     public void setIdduration(Short idduration) {

@@ -29,11 +29,13 @@ public class Administration {
         return User.getAllUsers();
     }
     
+    public static User getUser(String login){
+        return User.getByLogin(login);
+    }
+    
+    
     public static void main(String[] args){
-        List<User> users = getUsers();
-        for(int i = 0; i < users.size(); i++){
-            System.out.println(users.get(i).getLogin() + " : " + users.get(i).getName()); 
-        }
+        newCar("1234567", "PEUJO 708", 50);
     }
     
 }

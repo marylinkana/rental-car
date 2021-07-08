@@ -1,6 +1,6 @@
 package Models;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class User {
 
@@ -14,9 +14,9 @@ public class User {
 
     private int phoneNumber;
 
-    private LocalDate age;
+    private Date age;
 
-    public User(String name, String adress, String login, String password, int phoneNumber, LocalDate age) {
+    public User(String name, String adress, String login, String password, int phoneNumber, Date age) {
         this.name = name;
         this.adress = adress;
         this.login = login;
@@ -65,11 +65,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getAge() {
+    public Date getAge() {
         return age;
     }
 
-    public void setAge(LocalDate age) {
+    public void setAge(Date age) {
         this.age = age;
     }
 

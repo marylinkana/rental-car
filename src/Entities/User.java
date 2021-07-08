@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +17,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -47,7 +48,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByAge", query = "SELECT u FROM User u WHERE u.age = :age")
     , @NamedQuery(name = "User.findByUserlevel", query = "SELECT u FROM User u WHERE u.userlevel = :userlevel")
     , @NamedQuery(name = "User.findByDiscountlevel", query = "SELECT u FROM User u WHERE u.discountlevel = :discountlevel")
-    //, @NamedQuery(name = "User.InsertNewUser", query = "INSERT INTO User (name, adress, login, password, phonenumber, age) VALUES (:name, :adress, :login, :password, :phonenumber, :age)")
 })
 
 public class User implements Serializable {
@@ -89,8 +89,13 @@ public class User implements Serializable {
     }
 
     public static void create(Models.User user) {
-        BDSession.getEM().getTransaction().begin();
-        Query query = BDSession.getEM().createNativeQuery("User.InsertNewUser", User.class);
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        
+        String sql = "INSERT INTO user (name, adress, login, password, phonenumber, age) VALUES (?, ?, ?, ?, ?, ?)";
+    
+        Query query = em.createNativeQuery(sql);
         query.setParameter(1, user.getName());
         query.setParameter(2, user.getAdress());
         query.setParameter(3, user.getLogin());
@@ -98,6 +103,9 @@ public class User implements Serializable {
         query.setParameter(5, user.getPhoneNumber());
         query.setParameter(6, user.getAge());
         query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
     
     public static boolean isConnect(String login, String password){
@@ -123,6 +131,10 @@ public class User implements Serializable {
     
     public static List<User> getAllUsers(){
         return BDSession.getEM().createNamedQuery("User.findAll").getResultList();
+    }
+    
+    public static User getByLogin(String login){
+        return BDSession.getEM().createNamedQuery("User.findByLogin", User.class).setParameter("login", login).getSingleResult();
     }
 
     public String getLogin() {

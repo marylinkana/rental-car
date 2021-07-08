@@ -13,6 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -36,7 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Car.findByPicture", query = "SELECT c FROM Car c WHERE c.picture = :picture")
     , @NamedQuery(name = "Car.findByPriceperday", query = "SELECT c FROM Car c WHERE c.priceperday = :priceperday")
     , @NamedQuery(name = "Car.findByDiscount", query = "SELECT c FROM Car c WHERE c.discount = :discount")
-    //, @NamedQuery(name = "Car.InsertNewCar", query = "INSERT INTO Car (immatriculation, description, priceperday) VALUES (:immatriculation, :description, :priceperday)")
 })
 public class Car implements Serializable {
 
@@ -61,12 +62,20 @@ public class Car implements Serializable {
     }
 
     public Car(String immatriculation, String description, double pricePerDay) {
-        BDSession.getEM().getTransaction().begin();
-        Query query = BDSession.getEM().createNativeQuery("Car.InsertNewCar", Car.class);
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        String sql = "INSERT INTO Car (immatriculation, description, priceperday) VALUES (?, ?, ?)";
+    
+        Query query = em.createNativeQuery(sql);        
         query.setParameter(1, immatriculation);
         query.setParameter(2, description);
-        query.setParameter(3, description);
+        query.setParameter(3, pricePerDay);
         query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
     
     public static List<Car> getAllCars(){
