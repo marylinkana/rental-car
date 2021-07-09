@@ -5,20 +5,29 @@
  */
 package Views.Login;
 
-import javafx.scene.control.TextField;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
 /**
  * FXML Controller class
  *
- * @author kanab
+ * @author sachaamar
  */
-public class LoginController{  
-    
-    TextField email;
-    TextField password;
-    
-    public void submit(){
-        
+public class LoginController implements Initializable {
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+
+    @FXML
+    private void connection(ActionEvent event) {
     }
     
 }

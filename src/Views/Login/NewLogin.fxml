@@ -39,9 +39,8 @@
             </Menu>
         </menus>
       </MenuBar>
-      <TextField id="password" layoutX="68.0" layoutY="305.0" prefHeight="25.0" prefWidth="182.0" promptText="Login Password" />
       <TextField id="email" layoutX="68.0" layoutY="262.0" prefHeight="25.0" prefWidth="182.0" promptText="Login email" />
-      <PasswordField layoutX="281.0" layoutY="305.0" promptText="Password" text="Password" />
+      <PasswordField layoutX="68.0" layoutY="303.0" prefHeight="27.0" prefWidth="182.0" promptText="Password" text="Password" />
       <Button id="submit" layoutX="131.0" layoutY="352.0" mnemonicParsing="false" onAction="#connection" text="Log on" textFill="#f20a0a" />
       <ImageView fitHeight="216.0" fitWidth="600.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
          <image>
