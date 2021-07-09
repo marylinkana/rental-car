@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -39,18 +38,18 @@
             </Menu>
         </menus>
       </MenuBar>
-      <TextField id="email" layoutX="68.0" layoutY="262.0" prefHeight="25.0" prefWidth="182.0" promptText="Login email" />
-      <PasswordField layoutX="68.0" layoutY="303.0" prefHeight="27.0" prefWidth="182.0" promptText="Password" text="Password" />
+      <TextField id="email" layoutX="68.0" layoutY="262.0" prefHeight="25.0" prefWidth="182.0" promptText="Email" />
       <Button id="submit" layoutX="131.0" layoutY="352.0" mnemonicParsing="false" onAction="#connection" text="Log on" textFill="#f20a0a" />
-      <ImageView fitHeight="216.0" fitWidth="600.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="212.0" fitWidth="600.0" layoutY="38.0">
          <image>
             <Image url="@SB_RentalCar.png" />
          </image>
       </ImageView>
-      <Label layoutX="123.0" layoutY="194.0" text="LOGIN" textFill="#dd1111">
+      <Label layoutX="123.0" layoutY="193.0" text="LOGIN" textFill="#dd1111">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
+      <PasswordField layoutX="68.0" layoutY="307.0" prefHeight="27.0" prefWidth="182.0" promptText="Login Password" text="Password" />
    </children>
 </Pane>
