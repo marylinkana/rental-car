@@ -110,11 +110,7 @@ public class User implements Serializable {
     
     public static boolean isConnect(String login, String password){
         User personne = BDSession.getEM().find(User.class, login);
-        if (personne != null && sha1Encode(password).equals(personne.getPassword().toUpperCase())) {
-          System.out.println("Wecomme : " + String.valueOf(personne.name));
-          return true;
-        }
-        return false;
+        return personne != null && sha1Encode(password).equals(personne.getPassword().toUpperCase());
     }
     
     private static String sha1Encode(String password){

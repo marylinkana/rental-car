@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views1;
+package Views.Rent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -16,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author kanab
  */
-public class LoginController implements Initializable {
+public class RentController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -25,9 +23,5 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void connection(ActionEvent event) {
-    }
     
 }

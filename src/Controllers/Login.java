@@ -14,8 +14,12 @@ import Entities.User;
  */
 public class Login {
 
-    public static void verify(String login, String password) {
+    public static String verify(String login, String password){
         System.out.println(User.isConnect(login, password)); 
+        if (!User.isConnect(login, password)){
+            return "your password or email is incorrect, try again";
+        }
+        return "welcome";
         // TODO : Call the appropriate view
     }
     
