@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -40,13 +41,14 @@
       </MenuBar>
       <TextField id="password" layoutX="68.0" layoutY="305.0" prefHeight="25.0" prefWidth="182.0" promptText="Login Password" />
       <TextField id="email" layoutX="68.0" layoutY="262.0" prefHeight="25.0" prefWidth="182.0" promptText="Login email" />
+      <PasswordField layoutX="281.0" layoutY="305.0" promptText="Password" text="Password" />
       <Button id="submit" layoutX="131.0" layoutY="352.0" mnemonicParsing="false" onAction="#connection" text="Log on" textFill="#f20a0a" />
-      <ImageView fitHeight="212.0" fitWidth="600.0" layoutY="38.0">
+      <ImageView fitHeight="216.0" fitWidth="600.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Capture%20d’écran%202021-07-08%20à%2014.29.51.png" />
+            <Image url="@SB_RentalCar.png" />
          </image>
       </ImageView>
-      <Label layoutX="123.0" layoutY="193.0" text="LOGIN" textFill="#dd1111">
+      <Label layoutX="123.0" layoutY="194.0" text="LOGIN" textFill="#dd1111">
          <font>
             <Font size="25.0" />
          </font>
