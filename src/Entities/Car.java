@@ -80,7 +80,7 @@ public class Car implements Serializable {
     
     public static List<Car> getAllCars(){
         BDSession.getEM().getTransaction().begin();
-        Query query = BDSession.getEM().createNativeQuery("Car.findAll", Car.class);
+        Query query = BDSession.getEM().createNamedQuery("Car.findAll", Car.class);
         return query.getResultList();
     }
     
@@ -155,7 +155,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "Controllers.Car[ immatriculation=" + immatriculation + " ]";
+        return this.getDescription();
     }
     
 }

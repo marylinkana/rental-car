@@ -21,5 +21,4 @@ public class Index extends Application{
         Root login = new Root("Login", "..\\Views\\Login\\Login.fxml");
         login.start(stage);    
     }
-
 }

@@ -7,6 +7,7 @@ package Controllers;
 
 import Entities.Car;
 import Entities.User;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -27,6 +28,10 @@ public class Administration {
     
     public static List<User> getUsers(){
         return User.getAllUsers();
+    }    
+    
+    public static List<Car> getCars(){
+        return Car.getAllCars();
     }
     
     public static User getUser(String login){
@@ -35,7 +40,7 @@ public class Administration {
     
     
     public static void main(String[] args){
-        newCar("1234567", "PEUJO 708", 50);
+        newCar("CM380FR", "FORD FIESTA", 100.0);
     }
     
 }

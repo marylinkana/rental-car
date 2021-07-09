@@ -130,7 +130,10 @@ public class User implements Serializable {
     }
     
     public static User getByLogin(String login){
-        return BDSession.getEM().createNamedQuery("User.findByLogin", User.class).setParameter("login", login).getSingleResult();
+        return BDSession.getEM().
+                createNamedQuery("User.findByLogin", User.class).
+                setParameter("login", login).
+                getSingleResult();
     }
 
     public String getLogin() {
