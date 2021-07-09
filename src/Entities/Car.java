@@ -66,7 +66,7 @@ public class Car implements Serializable {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        String sql = "INSERT INTO Car (immatriculation, description, priceperday) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO car (immatriculation, description, priceperday) VALUES (?, ?, ?)";
     
         Query query = em.createNativeQuery(sql);        
         query.setParameter(1, immatriculation);

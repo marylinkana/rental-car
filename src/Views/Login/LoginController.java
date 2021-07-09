@@ -5,6 +5,7 @@
  */
 package Views.Login;
 
+import Controllers.Login;
 import Controllers.Root;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,9 +49,16 @@ public class LoginController implements Initializable {
         String verification = Controllers.Login.verify(email.getText(), password.getText());
         verify.setText(verification);
         if(verification.equals("welcome")){
-            Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
-            Stage stage = new Stage();
-            rent.start(stage);
+            if(Login.session.getUserlevel().equals("ADMINISTRATOR")){
+                Root admin = new Root("Admin", "..\\Views\\Admin\\Admin.fxml");
+                Stage stage = new Stage();
+                admin.start(stage);
+            }
+            else{
+                Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
+                Stage stage = new Stage();
+                rent.start(stage);
+            }
         }
     }
 
