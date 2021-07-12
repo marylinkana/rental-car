@@ -13,8 +13,14 @@
          </font>
       </Label>
       <TextField id="immat" fx:id="immat" layoutX="14.0" layoutY="100.0" promptText="immatriculation" />
-      <TextField id="price" fx:id="price" layoutX="437.0" layoutY="100.0" promptText="price per day" />
-      <TextField id="desc" fx:id="desc" layoutX="222.0" layoutY="100.0" promptText="description" />
-      <Button layoutX="274.0" layoutY="188.0" mnemonicParsing="false" onAction="#create" text="Send" />
+      <TextField id="price" fx:id="price" layoutX="322.0" layoutY="100.0" promptText="price per day" />
+      <TextField id="desc" fx:id="desc" layoutX="168.0" layoutY="100.0" promptText="description" />
+      <Button id="send" layoutX="477.0" layoutY="100.0" mnemonicParsing="false" onAction="#newCar" text="Send" />
+      <ChoiceBox id="carsCB" fx:id="carsCB" layoutX="13.0" layoutY="149.0" prefWidth="150.0" />
+      <TextField fx:id="carDiscount" layoutX="168.0" layoutY="149.0" promptText="Discount" />
+      <Button id="sendDiscount" layoutX="322.0" layoutY="149.0" mnemonicParsing="false" onAction="#setCarDiscount" text="Send" />
+      <ChoiceBox fx:id="usersCB" layoutX="13.0" layoutY="200.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="userLevelsCB" layoutX="167.0" layoutY="200.0" prefWidth="150.0" />
+      <Button id="sendDiscount" layoutX="322.0" layoutY="200.0" mnemonicParsing="false" onAction="#setUserLevel" text="Send" />
    </children>
 </Pane>

@@ -1,4 +1,4 @@
-package Views.Login;
+package Main;
 
 import Controllers.Root;
 import javafx.application.Application;

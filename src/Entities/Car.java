@@ -84,6 +84,22 @@ public class Car implements Serializable {
         return query.getResultList();
     }
     
+    public static void setCarDiscount(double discount, String immat) {
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        String sql = "UPDATE car SET discount = ? WHERE immatriculation = ?";
+    
+        Query query = em.createNativeQuery(sql);        
+        query.setParameter(1, discount);
+        query.setParameter(2, immat);
+        query.executeUpdate();
+        
+        tx.commit();
+        em.close();
+    }
+    
     public Double getDiscount() {
         return discount;
     }

@@ -257,7 +257,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "Controllers.User[ login=" + login + " ]";
+        return  login;
     }
     
 }
