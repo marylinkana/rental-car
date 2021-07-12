@@ -13,16 +13,19 @@ public class IndividualMember extends User {
     }
 
     public String getUserLevel() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return userLevel;
     }
 
     public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
     }
 
     public double getDiscountLevel() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return discountLevel;
     }
 
     public void setDiscountLevel(double discountLevel) {
+        this.discountLevel = discountLevel;
     }
+
 }

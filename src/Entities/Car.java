@@ -66,7 +66,7 @@ public class Car implements Serializable {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        String sql = "INSERT INTO Car (immatriculation, description, priceperday) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO car (immatriculation, description, priceperday) VALUES (?, ?, ?)";
     
         Query query = em.createNativeQuery(sql);        
         query.setParameter(1, immatriculation);
@@ -80,8 +80,24 @@ public class Car implements Serializable {
     
     public static List<Car> getAllCars(){
         BDSession.getEM().getTransaction().begin();
-        Query query = BDSession.getEM().createNativeQuery("Car.findAll", Car.class);
+        Query query = BDSession.getEM().createNamedQuery("Car.findAll", Car.class);
         return query.getResultList();
+    }
+    
+    public static void setCarDiscount(double discount, String immat) {
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        String sql = "UPDATE car SET discount = ? WHERE immatriculation = ?";
+    
+        Query query = em.createNativeQuery(sql);        
+        query.setParameter(1, discount);
+        query.setParameter(2, immat);
+        query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
     
     public Double getDiscount() {
@@ -155,7 +171,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "Controllers.Car[ immatriculation=" + immatriculation + " ]";
+        return this.getDescription();
     }
     
 }

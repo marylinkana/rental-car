@@ -13,10 +13,15 @@ import Entities.User;
  * @author kanab
  */
 public class Login {
+    
+    public static User session;
 
-    public static void verify(String login, String password) {
-        System.out.println(User.isConnect(login, password)); 
-        // TODO : Call the appropriate view
+    public static String verify(String login, String password){
+        if (!User.isConnect(login, password)){
+            return "your password or email is incorrect, try again";
+        }
+        session = User.getByLogin(login);
+        return "welcome";
     }
     
     public static void main(String[] args){

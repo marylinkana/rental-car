@@ -88,12 +88,12 @@ public class User implements Serializable {
         Rent rent = new Rent(this.login, immatriculation, idduration);
     }
 
-    public static void create(Models.User user) {
+    public static void create(Models.NewCustomer user) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
-        String sql = "INSERT INTO user (name, adress, login, password, phonenumber, age) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
         Query query = em.createNativeQuery(sql);
         query.setParameter(1, user.getName());
@@ -102,6 +102,8 @@ public class User implements Serializable {
         query.setParameter(4, sha1Encode(user.getPassword()));
         query.setParameter(5, user.getPhoneNumber());
         query.setParameter(6, user.getAge());
+        query.setParameter(7, user.getUserLevel());
+        query.setParameter(8, user.getDiscountLevel());
         query.executeUpdate();
         
         tx.commit();
@@ -110,11 +112,7 @@ public class User implements Serializable {
     
     public static boolean isConnect(String login, String password){
         User personne = BDSession.getEM().find(User.class, login);
-        if (personne != null && sha1Encode(password).equals(personne.getPassword().toUpperCase())) {
-          System.out.println("Wecomme : " + String.valueOf(personne.name));
-          return true;
-        }
-        return false;
+        return personne != null && sha1Encode(password).equals(personne.getPassword().toUpperCase());
     }
     
     private static String sha1Encode(String password){
@@ -134,7 +132,10 @@ public class User implements Serializable {
     }
     
     public static User getByLogin(String login){
-        return BDSession.getEM().createNamedQuery("User.findByLogin", User.class).setParameter("login", login).getSingleResult();
+        return BDSession.getEM().
+                createNamedQuery("User.findByLogin", User.class).
+                setParameter("login", login).
+                getSingleResult();
     }
 
     public String getLogin() {
@@ -190,7 +191,19 @@ public class User implements Serializable {
     }
 
     public void setUserlevel(String userlevel) {
-        this.userlevel = userlevel;
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        
+        String sql = "UPDATE user SET userlevel = ? WHERE login = ?";
+        
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, userlevel);
+        query.setParameter(2, this.login);
+        query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
 
     public Double getDiscountlevel() {
@@ -198,7 +211,19 @@ public class User implements Serializable {
     }
 
     public void setDiscountlevel(Double discountlevel) {
-        this.discountlevel = discountlevel;
+        EntityManager em = BDSession.getEM();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        
+        String sql = "UPDATE user SET discountlevel = ? WHERE login = ?";
+        
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, discountlevel);
+        query.setParameter(2, this.login);
+        query.executeUpdate();
+        
+        tx.commit();
+        em.close();
     }
 
     @XmlTransient
@@ -232,7 +257,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "Controllers.User[ login=" + login + " ]";
+        return  login;
     }
     
 }

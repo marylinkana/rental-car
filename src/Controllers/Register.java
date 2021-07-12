@@ -25,6 +25,5 @@ public class Register {
     public static void main(String[] args){
         Date age = new Date(2000, 01, 01);
         newCustomer("test3", "test3", "test3", "test3", 0755525, age);
-        
     }
 }
