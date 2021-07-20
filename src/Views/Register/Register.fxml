@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Rent.RentController">
+<Pane id="submit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Register.RegisterController">
    <children>
-      <Label layoutX="127.0" layoutY="25.0" prefHeight="65.0" prefWidth="329.0" text="REGISTER" textAlignment="CENTER">
+      <Label layoutX="24.0" layoutY="24.0" prefHeight="65.0" prefWidth="329.0" text="REGISTRATION" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
+      <TextField id="name" fx:id="name" layoutX="57.0" layoutY="180.0" prefHeight="25.0" prefWidth="182.0" promptText="Name" />
+      <TextField id="adress" fx:id="adress" layoutX="57.0" layoutY="209.0" prefHeight="25.0" prefWidth="182.0" promptText="Adress" />
+      <TextField id="login" fx:id="login" layoutX="57.0" layoutY="238.0" prefHeight="25.0" prefWidth="182.0" promptText="Login" />
+      <TextField id="password" fx:id="password" layoutX="57.0" layoutY="267.0" prefHeight="25.0" prefWidth="182.0" promptText="Password" />
+      <TextField id="phonenumber" fx:id="phonenumber" layoutX="57.0" layoutY="296.0" prefHeight="25.0" prefWidth="182.0" promptText="Phone number" />
+      <DatePicker id="age" fx:id="age" layoutX="57.0" layoutY="325.0" prefHeight="25.0" prefWidth="182.0" promptText="Age" />
+      <Button fx:id="submlit" layoutX="110.0" layoutY="361.0" mnemonicParsing="false" onAction="#register" text="Submit" />
+      <Label id="veriflog" fx:id="veriflog" layoutX="57.0" layoutY="155.0" prefHeight="17.0" prefWidth="226.0" textAlignment="CENTER" textFill="#eb0707" />
+      <Button layoutX="475.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="25.0" prefWidth="99.0" text="Go to login" textFill="#f20f0f" />
    </children>
 </Pane>
