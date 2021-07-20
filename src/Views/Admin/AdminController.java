@@ -100,4 +100,11 @@ public class AdminController implements Initializable {
         }
     }
     
+    @FXML
+    public void goToRent(ActionEvent event) throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+    }
+    
 }

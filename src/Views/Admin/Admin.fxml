@@ -22,5 +22,6 @@
       <ChoiceBox fx:id="usersCB" layoutX="13.0" layoutY="200.0" prefWidth="150.0" />
       <ChoiceBox fx:id="userLevelsCB" layoutX="167.0" layoutY="200.0" prefWidth="150.0" />
       <Button id="sendDiscount" layoutX="322.0" layoutY="200.0" mnemonicParsing="false" onAction="#setUserLevel" text="Send" />
+      <Button fx:id="goToRent" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToRent" text="Rent" textFill="#e80a0a" />
    </children>
 </Pane>

@@ -12,9 +12,9 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <DatePicker id="start" fx:id="start" layoutX="20.0" layoutY="116.0" />
-      <DatePicker id="end" fx:id="end" layoutX="213.0" layoutY="116.0" />
-      <Button layoutX="280.0" layoutY="188.0" mnemonicParsing="false" onAction="#rent" text="Rent" />
-      <ChoiceBox id="car" fx:id="car" layoutX="421.0" layoutY="116.0" prefWidth="150.0" />
+      <DatePicker id="start" fx:id="start" layoutX="8.0" layoutY="116.0" />
+      <DatePicker id="end" fx:id="end" layoutX="193.0" layoutY="116.0" />
+      <Button layoutX="530.0" layoutY="116.0" mnemonicParsing="false" onAction="#rent" text="Rent" />
+      <ChoiceBox id="car" fx:id="car" layoutX="373.0" layoutY="116.0" prefWidth="150.0" />
    </children>
 </Pane>
