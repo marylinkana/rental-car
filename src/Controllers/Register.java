@@ -16,7 +16,14 @@ import java.util.Date;
  */
 public class Register {
     
-    public static void newCustomer(String login, String adress, String name, String password, int phonenumber, Date age) {
+    public static Boolean verifLog(String login) {
+        if(Entities.User.verifyLogin(login) == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public static void newCustomer(String login, String adress, String name, String password, String phonenumber, Date age) {
         User user = new User(name, adress, login, password, phonenumber, age);
         NewCustomer newCustomer = new NewCustomer(user);
         Entities.User.create(newCustomer);
@@ -24,6 +31,6 @@ public class Register {
         
     public static void main(String[] args){
         Date age = new Date(2000, 01, 01);
-        newCustomer("test3", "test3", "test3", "test3", 0755525, age);
+        newCustomer("test3", "test3", "test3", "test3", "+33 0755525", age);
     }
 }

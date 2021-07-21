@@ -57,5 +57,8 @@ public class RentController implements Initializable {
         String login = Login.session.getLogin();
         System.out.println(immat + login + start.getValue() + end.getValue());
         Controllers.Rental.newRent(immat, login, start.getValue(), end.getValue());
+        if(Entities.User.getByLogin(login).getUserlevel().equals("NEW CUSTOMER")){
+            Controllers.Administration.setUserToIndiv(login);
+        }
     }
 }

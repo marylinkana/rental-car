@@ -18,7 +18,7 @@ public class Index extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Root login = new Root("Login", "..\\Views\\Login\\Login.fxml");
-        login.start(stage);    
+        Root register = new Root("Register", "..\\Views\\Register\\Register.fxml");
+        register.start(stage);    
     }
 }

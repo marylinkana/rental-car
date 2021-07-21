@@ -12,11 +12,11 @@ public class User {
 
     private String password;
 
-    private int phoneNumber;
+    private String phoneNumber;
 
     private Date age;
 
-    public User(String name, String adress, String login, String password, int phoneNumber, Date age) {
+    public User(String name, String adress, String login, String password, String phoneNumber, Date age) {
         this.name = name;
         this.adress = adress;
         this.login = login;
@@ -57,11 +57,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

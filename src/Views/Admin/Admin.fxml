@@ -7,20 +7,24 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Admin.AdminController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="329.0" text="ADMIN" textAlignment="CENTER">
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="329.0" text="ADMINISTRATION" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <TextField id="immat" fx:id="immat" layoutX="14.0" layoutY="100.0" promptText="immatriculation" />
-      <TextField id="price" fx:id="price" layoutX="322.0" layoutY="100.0" promptText="price per day" />
-      <TextField id="desc" fx:id="desc" layoutX="168.0" layoutY="100.0" promptText="description" />
-      <Button id="send" layoutX="477.0" layoutY="100.0" mnemonicParsing="false" onAction="#newCar" text="Send" />
-      <ChoiceBox id="carsCB" fx:id="carsCB" layoutX="13.0" layoutY="149.0" prefWidth="150.0" />
-      <TextField fx:id="carDiscount" layoutX="168.0" layoutY="149.0" promptText="Discount" />
-      <Button id="sendDiscount" layoutX="322.0" layoutY="149.0" mnemonicParsing="false" onAction="#setCarDiscount" text="Send" />
-      <ChoiceBox fx:id="usersCB" layoutX="13.0" layoutY="200.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="userLevelsCB" layoutX="167.0" layoutY="200.0" prefWidth="150.0" />
-      <Button id="sendDiscount" layoutX="322.0" layoutY="200.0" mnemonicParsing="false" onAction="#setUserLevel" text="Send" />
+      <TextField id="immat" fx:id="immat" layoutX="14.0" layoutY="115.0" promptText="immatriculation" />
+      <TextField id="price" fx:id="price" layoutX="322.0" layoutY="115.0" promptText="price per day" />
+      <TextField id="desc" fx:id="desc" layoutX="168.0" layoutY="115.0" promptText="description" />
+      <Button id="send" layoutX="477.0" layoutY="115.0" mnemonicParsing="false" onAction="#newCar" text="Send" />
+      <ChoiceBox id="carsCB" fx:id="carsCB" layoutX="13.0" layoutY="169.0" prefWidth="150.0" />
+      <TextField fx:id="carDiscount" layoutX="168.0" layoutY="169.0" promptText="Discount" />
+      <Button id="sendDiscount" layoutX="322.0" layoutY="169.0" mnemonicParsing="false" onAction="#setCarDiscount" text="Send" />
+      <ChoiceBox fx:id="usersCB" layoutX="13.0" layoutY="225.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="userLevelsCB" layoutX="167.0" layoutY="225.0" prefWidth="150.0" />
+      <Button id="sendDiscount" layoutX="322.0" layoutY="225.0" mnemonicParsing="false" onAction="#setUserLevel" text="Send" />
+      <Button fx:id="goToRent" layoutX="516.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToRent" text="Go to Rent" textFill="#e80a0a" />
+      <Label layoutX="13.0" layoutY="98.0" prefHeight="17.0" prefWidth="102.0" text="ADD NEW CAR" />
+      <Label layoutX="13.0" layoutY="152.0" prefHeight="17.0" prefWidth="129.0" text="SET CAR DISCOUNT" />
+      <Label layoutX="13.0" layoutY="208.0" prefHeight="17.0" prefWidth="117.0" text="SET USER LEVEL" />
    </children>
 </Pane>

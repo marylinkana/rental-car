@@ -64,7 +64,7 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
     @Column(name = "phonenumber")
-    private Integer phonenumber;
+    private String phonenumber;
     @Column(name = "age")
     @Temporal(TemporalType.DATE)
     private Date age;
@@ -137,6 +137,12 @@ public class User implements Serializable {
                 setParameter("login", login).
                 getSingleResult();
     }
+    
+    public static int verifyLogin(String login){
+        return BDSession.getEM().
+                createNamedQuery("User.findByLogin", User.class).
+                setParameter("login", login).getFirstResult();
+    }
 
     public String getLogin() {
         return login;
@@ -170,11 +176,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(Integer phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
