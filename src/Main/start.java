@@ -8,7 +8,7 @@ import javafx.stage.Stage;
  *
  * @author kanab
  */
-public class Index extends Application{
+public class start extends Application{
     
     private Stage stage = new Stage();
     

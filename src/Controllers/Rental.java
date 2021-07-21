@@ -8,6 +8,7 @@ package Controllers;
 import Entities.Car;
 import Entities.Rent;
 import Entities.Duration;
+import Entities.User;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,6 +26,15 @@ public class Rental {
     
     public static List<Car> getAllCars() {
         return Car.getAllCars();
+    }
+    
+    public static double totalCost(User user, Car car, int duration){
+        Double initCoust = car.getPriceperday() * duration;
+        Double discountCar = initCoust * car.getDiscount();
+        Double coustAfterDiscountCar = initCoust - discountCar;
+        Double discountUser = coustAfterDiscountCar * user.getDiscountlevel();
+        Double finalCost = coustAfterDiscountCar - discountUser;
+        return finalCost;
     }
     
     public static void main(String[] args){

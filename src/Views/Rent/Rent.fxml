@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -16,5 +17,21 @@
       <DatePicker id="end" fx:id="end" layoutX="193.0" layoutY="116.0" />
       <Button layoutX="530.0" layoutY="116.0" mnemonicParsing="false" onAction="#rent" text="Rent" />
       <ChoiceBox id="car" fx:id="car" layoutX="373.0" layoutY="116.0" prefWidth="150.0" />
+      <ImageView fx:id="carimage" fitHeight="168.0" fitWidth="370.0" layoutX="10.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="390.0" layoutY="166.0" prefHeight="17.0" prefWidth="98.0" text="DESCRIPTION" />
+      <Label id="description" fx:id="descCar" layoutX="390.0" layoutY="185.0" prefHeight="17.0" prefWidth="204.0" />
+      <Label layoutX="390.0" layoutY="228.0" prefHeight="17.0" prefWidth="106.0" text="PRICE PER DAY" />
+      <Label id="priceperday" fx:id="priceperday" layoutX="390.0" layoutY="247.0" prefHeight="17.0" prefWidth="204.0" />
+      <Label layoutX="353.0" layoutY="372.0" prefHeight="17.0" prefWidth="98.0" text="TOTAL  TO PAY : " />
+      <Label id="totalcoust" fx:id="totalcoust" layoutX="461.0" layoutY="372.0" prefHeight="17.0" prefWidth="52.0" />
+      <Button layoutX="529.0" layoutY="364.0" mnemonicParsing="false" onAction="#goToPay" text="Pay" />
+      <Label layoutX="390.0" layoutY="286.0" prefHeight="17.0" prefWidth="106.0" text="CAR DISCOUNT" />
+      <Label id="discount" fx:id="discount" layoutX="390.0" layoutY="303.0" prefHeight="17.0" prefWidth="198.0" />
+      <Label layoutX="10.0" layoutY="373.0" prefHeight="17.0" prefWidth="130.0" text="MEMBER DISCOUNT :" />
+      <Label fx:id="memberdiscount" layoutX="156.0" layoutY="372.0" prefHeight="17.0" prefWidth="64.0" />
+      <Label layoutX="10.0" layoutY="343.0" prefHeight="17.0" prefWidth="71.0" text="DURATION :" />
+      <Label fx:id="rentDuration" layoutX="81.0" layoutY="343.0" prefHeight="17.0" prefWidth="80.0" />
+      <Label layoutX="177.0" layoutY="343.0" prefHeight="17.0" prefWidth="139.0" text="Cost without discounts :" />
+      <Label fx:id="withoutdiscount" layoutX="307.0" layoutY="343.0" prefHeight="17.0" prefWidth="52.0" textFill="#e40b0b" />
    </children>
 </Pane>

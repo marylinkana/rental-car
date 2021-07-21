@@ -26,13 +26,12 @@ import javafx.stage.Stage;
  * @author kanab
  */
 public class LoginController implements Initializable {
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //imageHeader.setImage(new Image("https://blog.consumerguide.com/wp-content/uploads/sites/2/2013/07/Screen-Shot-2018-02-05-at-2.16.11-PM.png"));
     }    
     
     @FXML
@@ -43,6 +42,9 @@ public class LoginController implements Initializable {
     
     @FXML
     private Label verify;
+    
+    @FXML
+    private ImageView imageHeader;
 
     @FXML
     public void connection(ActionEvent event) throws Exception {

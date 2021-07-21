@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import static java.util.concurrent.TimeUnit.DAYS;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -87,6 +88,10 @@ public class Duration implements Serializable {
         List<Duration> durations = BDSession.getEM().createNamedQuery("Duration.findAll").getResultList();
         int lastCase = durations.size() - 1;
         return durations.get(lastCase).idduration;
+    }
+    
+    public int numberOfDay(){
+        return start.compareTo(end);
     }
 
     public void setIdduration(Short idduration) {

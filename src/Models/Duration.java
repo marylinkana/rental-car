@@ -12,20 +12,19 @@ public class Duration {
     }
 
     public LocalDate getStart() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return start;
     }
 
     public void setStart(LocalDate start) {
+        this.start = start;
     }
 
     public LocalDate getEnd() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return end;
     }
 
     public void setEnd(LocalDate end) {
+        this.end = end;
     }
 
-    public int getDuration() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
