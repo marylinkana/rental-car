@@ -83,22 +83,18 @@ public class AdminController implements Initializable {
     @FXML
     public void newCar(ActionEvent event) throws Exception {
         Controllers.Administration.newCar(immat.getText(), desc.getText(), Double.valueOf(price.getText()));
-        Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
-        Stage stage = new Stage();
-        rent.start(stage);
-        
-        //Stage stg = (Stage)sendCar.getScene().getWindow();
-        //stg.close();
+        refrech();
     }
 
     @FXML
-    public void setCarDiscount(ActionEvent event) {
+    public void setCarDiscount(ActionEvent event) throws Exception {
         String immat = carsCB.getSelectionModel().getSelectedItem().getImmatriculation();
         Controllers.Administration.SetCarDiscount(Double.valueOf(carDiscount.getText()), immat);
+        refrech();
     }
     
     @FXML
-    public void setUserLevel(ActionEvent event) {
+    public void setUserLevel(ActionEvent event) throws Exception {
         String user = usersCB.getSelectionModel().getSelectedItem().getLogin();
         String level = userLevelsCB.getSelectionModel().getSelectedItem();
         if(level == "BUSINESS MEMBER"){
@@ -110,6 +106,7 @@ public class AdminController implements Initializable {
         else if(level == "INDIVIDUAL MEMBER"){
             Controllers.Administration.setUserToIndiv(user);
         }
+        refrech();
     }
     
     @FXML
@@ -117,6 +114,18 @@ public class AdminController implements Initializable {
         Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
         Stage stage = new Stage();
         rent.start(stage);
+        
+        Stage stg = (Stage)sendCar.getScene().getWindow();
+        stg.close();
+    }
+
+    private void refrech() throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)sendCar.getScene().getWindow();
+        stg.close();
     }
     
 }
