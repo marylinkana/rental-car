@@ -9,10 +9,7 @@ import Controllers.Login;
 import Controllers.Root;
 import Entities.Car;
 import java.net.URL;
-import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -20,16 +17,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.sound.midi.ControllerEventListener;
 
 /**
  * FXML Controller class
@@ -62,6 +56,8 @@ public class RentController implements Initializable {
     private Label rentDuration;
     @FXML
     private Label withoutdiscount;
+    @FXML
+    private Button payBtn;
 
     /**
      * Initializes the controller class.
@@ -108,10 +104,13 @@ public class RentController implements Initializable {
     }
 
     @FXML
-    public void goToPay(ActionEvent event) throws Exception {
-        Root rent = new Root("Rental", "..\\Views\\PayOff\\PayOff.fxml");
+    public void goToPay(ActionEvent event) throws Exception {        
+        Root rent = new Root("Payment", "..\\Views\\PayOff\\Payoff.fxml");
         Stage stage = new Stage();
         rent.start(stage);
+        
+        Stage stg = (Stage)payBtn.getScene().getWindow();
+        stg.close();
     }
 
 }

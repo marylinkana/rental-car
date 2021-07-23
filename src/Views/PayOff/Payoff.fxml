@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Rent.RentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.PayOff.PayoffController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="583.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@paiement.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="confirm" layoutX="152.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirm" prefHeight="51.0" prefWidth="288.0" text="CONFIRM PAYMENT AND BACK TO RENTAL" />
+      <Label layoutX="144.0" layoutY="115.0" prefHeight="17.0" prefWidth="288.0" text="CART NUMBER :" />
+      <Label layoutX="14.0" layoutY="21.0" prefHeight="66.0" prefWidth="265.0" text="PAYMENT">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="144.0" layoutY="183.0" prefHeight="17.0" prefWidth="288.0" text="NAME ON THE CART :" />
+      <Label layoutX="144.0" layoutY="250.0" prefHeight="17.0" prefWidth="118.0" text="EXPIRATION DATE :" />
+      <Label layoutX="313.0" layoutY="250.0" prefHeight="17.0" prefWidth="127.0" text="CVV SECURITY CODE :" />
+      <Label layoutX="143.0" layoutY="136.0" lineSpacing="10.0" prefHeight="17.0" prefWidth="288.0" text="1235 1254 6852 8954">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="144.0" layoutY="204.0" lineSpacing="10.0" prefHeight="17.0" prefWidth="288.0" text="SB CAR RENTAL">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="143.0" layoutY="273.0" lineSpacing="10.0" prefHeight="17.0" prefWidth="100.0" text="25 / 01 / 2025">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="313.0" layoutY="273.0" lineSpacing="10.0" prefHeight="17.0" prefWidth="100.0" text="798">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
    </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </Pane>

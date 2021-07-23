@@ -13,6 +13,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -26,12 +27,15 @@ import javafx.stage.Stage;
  * @author kanab
  */
 public class LoginController implements Initializable {
+
+    @FXML
+    private Button submit;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //imageHeader.setImage(new Image("https://blog.consumerguide.com/wp-content/uploads/sites/2/2013/07/Screen-Shot-2018-02-05-at-2.16.11-PM.png"));
+        //imageHeader.setImage(new Image("@SB_RentalCar.png"));
     }    
     
     @FXML
@@ -51,6 +55,7 @@ public class LoginController implements Initializable {
         String verification = Controllers.Login.verify(email.getText(), password.getText());
         verify.setText(verification);
         if(verification.equals("welcome")){
+                       
             if(Login.session.getUserlevel().equals("ADMINISTRATOR")){
                 Root admin = new Root("Admin", "..\\Views\\Admin\\Admin.fxml");
                 Stage stage = new Stage();
@@ -61,6 +66,8 @@ public class LoginController implements Initializable {
                 Stage stage = new Stage();
                 rent.start(stage);
             }
+            Stage stg = (Stage)submit.getScene().getWindow();
+            stg.close();
         }
     }
 

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -69,7 +70,9 @@ public class RegisterController implements Initializable {
         Root login = new Root("Login", "..\\Views\\Login\\Login.fxml");
         Stage stage = new Stage();
         login.start(stage);
+        
+        Stage stg = (Stage)submlit.getScene().getWindow();
+        stg.close();
     }
-    
-    
+ 
 }
