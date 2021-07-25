@@ -48,7 +48,9 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView imageHeader;
 
-    // verify the fiability of the user connetion's information and redirect to the rigth page
+    /**
+     * verify the fiability of the user connetion's information and redirect to the rigth page
+     */
     @FXML
     public void connection(ActionEvent event) throws Exception {
         String verification = Controllers.Login.verify(email.getText(), password.getText());
@@ -56,13 +58,17 @@ public class LoginController implements Initializable {
         if(verification.equals("welcome")){
                        
             if(Login.session.getUserlevel().equals("ADMINISTRATOR")){
-                // Root the application to go to Administration page
+                /**
+                 * Root the application to go to Administration page
+                 */
                 Root admin = new Root("Admin", "..\\Views\\Admin\\Admin.fxml");
                 Stage stage = new Stage();
                 admin.start(stage);
             }
             else{
-                // Root the application to go to rental page
+                /**
+                 * Root the application to go to rental page
+                 */
                 Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
                 Stage stage = new Stage();
                 rent.start(stage);

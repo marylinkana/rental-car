@@ -31,8 +31,6 @@ public class AdminController implements Initializable {
     private final ObservableList usersList = FXCollections.observableArrayList();
     private final ObservableList levelsList = FXCollections.observableArrayList();
 
-
-
     @FXML
     private TextField immat;
     @FXML
@@ -49,12 +47,6 @@ public class AdminController implements Initializable {
     private ChoiceBox<String> userLevelsCB;
     @FXML
     private Button sendCar;
-    @FXML
-    private Button sendCarDiscount;
-    @FXML
-    private Button sendDiscount;
-    @FXML
-    private Button goToRent;
 
     /**
      * Initializes the controller class.
@@ -80,14 +72,18 @@ public class AdminController implements Initializable {
 
     }     
 
-    // create new car
+    /**
+     * create new car
+     */
     @FXML
     public void newCar(ActionEvent event) throws Exception {
         Controllers.Administration.newCar(immat.getText(), desc.getText(), Double.valueOf(price.getText()));
         refrech();
     }
 
-    //  update car discount
+    /**
+     * update car discount
+     */
     @FXML
     public void setCarDiscount(ActionEvent event) throws Exception {
         String immat = carsCB.getSelectionModel().getSelectedItem().getImmatriculation();
@@ -95,7 +91,9 @@ public class AdminController implements Initializable {
         refrech();
     }
     
-    // update user level
+    /**
+     * update user level
+     */
     @FXML
     public void setUserLevel(ActionEvent event) throws Exception {
         String user = usersCB.getSelectionModel().getSelectedItem().getLogin();
@@ -112,7 +110,9 @@ public class AdminController implements Initializable {
         refrech();
     }
     
-    // Root the application to go to rental page
+    /**
+     * Root the application to go to rental page
+     */
     @FXML
     public void goToRent(ActionEvent event) throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
@@ -123,7 +123,9 @@ public class AdminController implements Initializable {
         stg.close();
     }
 
-    // refrech the page
+    /**
+     * refrech the page
+     */
     private void refrech() throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
         Stage stage = new Stage();

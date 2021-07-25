@@ -65,7 +65,9 @@ public class Duration implements Serializable {
         this.idduration = idduration;
     }
     
-    // create new duration for a rental and insert it in data base
+    /**
+     * create new duration for a rental and insert it in data base
+     */
     public Duration(LocalDate start, LocalDate end) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
@@ -84,7 +86,9 @@ public class Duration implements Serializable {
         em.close();
     }
     
-    // get the last duration in database
+    /**
+     * get the last duration in database
+     */
     public static int getLastDurationId() {
         List<Duration> durations = BDSession.getEM().createNamedQuery("Duration.findAll").getResultList();
         int lastCase = durations.size() - 1;
@@ -133,7 +137,6 @@ public class Duration implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Duration)) {
             return false;
         }

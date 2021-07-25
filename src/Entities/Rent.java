@@ -54,7 +54,9 @@ public class Rent implements Serializable {
         this.rentPK = rentPK;
     }
         
-    // create new car and insert it in data base
+    /**
+     * create new car and insert it in data base
+     */
     public Rent(String immatriculation, String login, int idduration){
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();

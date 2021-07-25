@@ -71,7 +71,9 @@ public class RentController implements Initializable {
         car.setItems(carsList);
     }    
 
-    // get the information of the rental and create new rental
+    /**
+     * get the information of the rental and create new rental
+     */
     @FXML
     public void rent(ActionEvent event){
         
@@ -98,7 +100,9 @@ public class RentController implements Initializable {
 
     }
     
-    // rent car and go to the payment page
+    /** 
+     * rent car and go to the payment page
+     */
     @FXML
     public void goToPay(ActionEvent event) throws Exception { 
         String immat = car.getSelectionModel().getSelectedItem().getImmatriculation();

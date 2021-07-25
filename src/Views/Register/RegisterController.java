@@ -8,7 +8,6 @@ package Views.Register;
 import Controllers.Root;
 import java.net.URL;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -53,7 +51,9 @@ public class RegisterController implements Initializable {
         // TODO
     }    
 
-    // register a new user
+    /** 
+     * register a new user
+     */
     @FXML
     public void register(ActionEvent event) throws Exception {
         Date ageDate = Date.from(age.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
@@ -66,7 +66,9 @@ public class RegisterController implements Initializable {
         else veriflog.setText("This login already exist");
     }
 
-    // go to the login page
+    /**
+     * go to the login page
+     */
     @FXML
     private void goToLogin(ActionEvent event) throws Exception {
         Root login = new Root("Login", "..\\Views\\Login\\Login.fxml");

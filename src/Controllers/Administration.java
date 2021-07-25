@@ -25,7 +25,9 @@ public class Administration {
         System.out.println(car.toString());
     }
     
-    // change the level of user to Administrato's level
+    /**
+     * change the level of user to Administrato's level
+     */
     public static void setUserToAdmin(String login){
         User user = User.getByLogin(login);
         Models.User modelUser = new Models.User(
@@ -41,7 +43,9 @@ public class Administration {
         user.setDiscountlevel(newAdmin.getDiscountLevel());
     }
     
-    // change the level of user to Business's level
+    /**
+     * change the level of user to Business's level
+     */
     public static void setUserToBusiness(String login){
         User user = User.getByLogin(login);
         Models.User modelUser = new Models.User(
@@ -57,7 +61,9 @@ public class Administration {
         user.setDiscountlevel(newBM.getDiscountLevel());
     }
     
-    // change the level of user to Individual's level
+    /**
+     * change the level of user to Individual's level
+     */
     public static void setUserToIndiv(String login){
         User user = User.getByLogin(login);
         Models.User modelUser = new Models.User(
@@ -73,27 +79,37 @@ public class Administration {
         user.setDiscountlevel(newIM.getDiscountLevel());
     }
         
-    // change level of discpunt's car or add a discount to a car
+    /**
+     * change level of discpunt's car or add a discount to a car
+     */
     public static void SetCarDiscount(double discount, String immat){
         Entities.Car.setCarDiscount(discount, immat);
     }
     
-    // get the list of all the users in data base
+    /**
+     * get the list of all the users in data base
+     */
     public static List<User> getUsers(){
         return User.getAllUsers();
     }    
     
-    // get all the cars in data base
+    /**
+     * get all the cars in data base
+     */
     public static List<Car> getCars(){
         return Car.getAllCars();
     }
     
-    // get one spécific user with his login
+    /**
+     * get one spécific user with his login
+     */
     public static User getUser(String login){
         return User.getByLogin(login);
     }
     
-    // main to test the class
+    /**
+     * main to test the class
+     */
     public static void main(String[] args){
         Collection<Car> cars = getCars();
         for (Car car : cars) {

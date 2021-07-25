@@ -19,18 +19,24 @@ import java.util.List;
  */
 public class Rental {
 
-    // create new rental
+    /**
+     * create new rental
+     */
     public static void newRent(String immatriculation, String login, LocalDate start, LocalDate end) {
         Duration duration = new Duration(start, end);
         Rent rent = new Rent(immatriculation, login, Duration.getLastDurationId());
     }
     
-    // get the list of all the car s in data base
+    /**
+     * get the list of all the car s in data base
+     */
     public static List<Car> getAllCars() {
         return Car.getAllCars();
     }
     
-    // calcul and return the total prise of the rental
+    /** 
+     * calcul and return the total prise of the rental
+     */
     public static double totalCost(User user, Car car, int duration){
         Double initCoust = car.getPriceperday() * duration;
         Double discountCar = initCoust * car.getDiscount();
