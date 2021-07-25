@@ -16,6 +16,7 @@ import java.util.Date;
  */
 public class Register {
     
+    // return true if the user is in the data base
     public static Boolean verifLog(String login) {
         if(Entities.User.verifyLogin(login) == 0){
             return true;
@@ -23,6 +24,7 @@ public class Register {
         return false;
     }
 
+    // create new customer
     public static void newCustomer(String login, String adress, String name, String password, String phonenumber, Date age) {
         User user = new User(name, adress, login, password, phonenumber, age);
         NewCustomer newCustomer = new NewCustomer(user);

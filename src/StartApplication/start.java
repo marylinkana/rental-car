@@ -1,4 +1,4 @@
-package Main;
+package StartApplication;
 
 import Controllers.Root;
 import javafx.application.Application;
@@ -16,6 +16,7 @@ public class start extends Application{
         launch(args);
     }
 
+    // start the application
     @Override
     public void start(Stage primaryStage) throws Exception {
         Root register = new Root("Register", "..\\Views\\Register\\Register.fxml");

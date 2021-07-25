@@ -32,6 +32,7 @@ public class PayoffController implements Initializable {
         // TODO
     }    
 
+    // confirm the payment of the rental and back to rental page
     @FXML
     public void confirm(ActionEvent event) throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");

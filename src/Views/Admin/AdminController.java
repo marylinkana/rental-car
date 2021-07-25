@@ -80,12 +80,14 @@ public class AdminController implements Initializable {
 
     }     
 
+    // create new car
     @FXML
     public void newCar(ActionEvent event) throws Exception {
         Controllers.Administration.newCar(immat.getText(), desc.getText(), Double.valueOf(price.getText()));
         refrech();
     }
 
+    //  update car discount
     @FXML
     public void setCarDiscount(ActionEvent event) throws Exception {
         String immat = carsCB.getSelectionModel().getSelectedItem().getImmatriculation();
@@ -93,6 +95,7 @@ public class AdminController implements Initializable {
         refrech();
     }
     
+    // update user level
     @FXML
     public void setUserLevel(ActionEvent event) throws Exception {
         String user = usersCB.getSelectionModel().getSelectedItem().getLogin();
@@ -109,6 +112,7 @@ public class AdminController implements Initializable {
         refrech();
     }
     
+    // Root the application to go to rental page
     @FXML
     public void goToRent(ActionEvent event) throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
@@ -119,6 +123,7 @@ public class AdminController implements Initializable {
         stg.close();
     }
 
+    // refrech the page
     private void refrech() throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
         Stage stage = new Stage();

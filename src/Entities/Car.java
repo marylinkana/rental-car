@@ -61,6 +61,7 @@ public class Car implements Serializable {
     public Car() {
     }
 
+    // create new car and insert it in data base
     public Car(String immatriculation, String description, double pricePerDay) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
@@ -78,12 +79,14 @@ public class Car implements Serializable {
         em.close();
     }
     
+    // get all car from data base
     public static List<Car> getAllCars(){
         BDSession.getEM().getTransaction().begin();
         Query query = BDSession.getEM().createNamedQuery("Car.findAll", Car.class);
         return query.getResultList();
     }
     
+    // set the discount of a specific car with its immatriculation
     public static void setCarDiscount(double discount, String immat) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
@@ -99,6 +102,7 @@ public class Car implements Serializable {
         tx.commit();
         em.close();
     }
+    
     
     public Double getDiscount() {
         return discount;

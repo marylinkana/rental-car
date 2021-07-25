@@ -12,7 +12,6 @@ import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import static java.util.concurrent.TimeUnit.DAYS;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -66,6 +65,7 @@ public class Duration implements Serializable {
         this.idduration = idduration;
     }
     
+    // create new duration for a rental and insert it in data base
     public Duration(LocalDate start, LocalDate end) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
@@ -84,6 +84,7 @@ public class Duration implements Serializable {
         em.close();
     }
     
+    // get the last duration in database
     public static int getLastDurationId() {
         List<Duration> durations = BDSession.getEM().createNamedQuery("Duration.findAll").getResultList();
         int lastCase = durations.size() - 1;

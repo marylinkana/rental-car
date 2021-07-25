@@ -53,6 +53,7 @@ public class RegisterController implements Initializable {
         // TODO
     }    
 
+    // register a new user
     @FXML
     public void register(ActionEvent event) throws Exception {
         Date ageDate = Date.from(age.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
@@ -65,6 +66,7 @@ public class RegisterController implements Initializable {
         else veriflog.setText("This login already exist");
     }
 
+    // go to the login page
     @FXML
     private void goToLogin(ActionEvent event) throws Exception {
         Root login = new Root("Login", "..\\Views\\Login\\Login.fxml");

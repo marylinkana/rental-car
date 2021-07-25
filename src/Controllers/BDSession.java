@@ -5,11 +5,11 @@
  */
 package Controllers;
 
-import Entities.User;
 import javax.persistence.*;
 
 public class BDSession { 
     
+    // créate an entity manager link with a persistence unit to link the data base
     public static EntityManager getEM() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CarRentalPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();

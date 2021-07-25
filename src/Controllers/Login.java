@@ -16,6 +16,9 @@ public class Login {
     
     public static User session;
 
+    /* verify if the user connection's informations is correct 
+    and if the user is in the data base
+    */
     public static String verify(String login, String password){
         if (!User.isConnect(login, password)){
             return "your password or email is incorrect, try again";

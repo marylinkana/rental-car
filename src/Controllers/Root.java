@@ -21,11 +21,13 @@ public class Root extends Application{
     private String title;
     private String resource;
 
+    // construtor of root with title of the page and the path
     public Root(String title, String resource) {
         this.title = title;
         this.resource = resource;
     }
 
+    // set the new scene and show 
     @Override
     public void start(Stage stage) throws Exception {
         Parent parent;

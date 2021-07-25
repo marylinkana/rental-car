@@ -88,6 +88,7 @@ public class User implements Serializable {
         Rent rent = new Rent(this.login, immatriculation, idduration);
     }
 
+    // create new user and insert it in data base
     public static void create(Models.NewCustomer user) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
@@ -110,11 +111,13 @@ public class User implements Serializable {
         em.close();
     }
     
+    // verify the information of user
     public static boolean isConnect(String login, String password){
         User personne = BDSession.getEM().find(User.class, login);
         return personne != null && sha1Encode(password).equals(personne.getPassword().toUpperCase());
     }
     
+    // encrypt the password
     private static String sha1Encode(String password){
         String sha1 = null;
         try {
@@ -127,10 +130,13 @@ public class User implements Serializable {
         return sha1;
     }
     
+    // get all the users in data base
     public static List<User> getAllUsers(){
         return BDSession.getEM().createNamedQuery("User.findAll").getResultList();
     }
     
+    
+    // get one specific user in data base with the login
     public static User getByLogin(String login){
         return BDSession.getEM().
                 createNamedQuery("User.findByLogin", User.class).
@@ -138,6 +144,7 @@ public class User implements Serializable {
                 getSingleResult();
     }
     
+    // verify the connection's login
     public static int verifyLogin(String login){
         return BDSession.getEM().
                 createNamedQuery("User.findByLogin", User.class).
@@ -196,6 +203,7 @@ public class User implements Serializable {
         return userlevel;
     }
 
+    // update user level
     public void setUserlevel(String userlevel) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
@@ -216,6 +224,7 @@ public class User implements Serializable {
         return discountlevel;
     }
 
+    // update discount level of the user
     public void setDiscountlevel(Double discountlevel) {
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();

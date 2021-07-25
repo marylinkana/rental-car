@@ -71,6 +71,7 @@ public class RentController implements Initializable {
         car.setItems(carsList);
     }    
 
+    // get the information of the rental and create new rental
     @FXML
     public void rent(ActionEvent event){
         String immat = car.getSelectionModel().getSelectedItem().getImmatriculation();
@@ -83,7 +84,7 @@ public class RentController implements Initializable {
         
         String desc = car.getSelectionModel().getSelectedItem().getDescription();
         Double price = car.getSelectionModel().getSelectedItem().getPriceperday();
-        Double carDiscount = car.getSelectionModel().getSelectedItem().getDiscount();
+        Double carDiscount = car.getSelectionModel().getSelectedItem().getDiscount() * 10;
         
         carimage.setImage(new Image("https://img4.autodeclics.com/photos/12/352793/hd-hopium-machina---les-photos-de-la-voiture-hydrog%C3%A8ne-fran%C3%A7aise-aux-1-000-km-d-autonomie.jpg"));
         
@@ -102,7 +103,8 @@ public class RentController implements Initializable {
         withoutdiscount.setText(String.valueOf(economy) + " £");
 
     }
-
+    
+    // go to the payment page
     @FXML
     public void goToPay(ActionEvent event) throws Exception {        
         Root rent = new Root("Payment", "..\\Views\\PayOff\\Payoff.fxml");
