@@ -74,24 +74,18 @@ public class RentController implements Initializable {
     // get the information of the rental and create new rental
     @FXML
     public void rent(ActionEvent event){
-        String immat = car.getSelectionModel().getSelectedItem().getImmatriculation();
-        String login = Login.session.getLogin();
-        
-        Controllers.Rental.newRent(immat, login, start.getValue(), end.getValue());
-        if(Entities.User.getByLogin(login).getUserlevel().equals("NEW CUSTOMER")){
-            Controllers.Administration.setUserToIndiv(login);
-        } 
         
         String desc = car.getSelectionModel().getSelectedItem().getDescription();
         Double price = car.getSelectionModel().getSelectedItem().getPriceperday();
-        Double carDiscount = car.getSelectionModel().getSelectedItem().getDiscount() * 10;
+        Double carDiscount = (car.getSelectionModel().getSelectedItem().getDiscount()) * 100;
+        Double memberDiscount = (Login.session.getDiscountlevel()) * 100;
         
-        carimage.setImage(new Image("https://img4.autodeclics.com/photos/12/352793/hd-hopium-machina---les-photos-de-la-voiture-hydrog%C3%A8ne-fran%C3%A7aise-aux-1-000-km-d-autonomie.jpg"));
+        carimage.setImage(new Image(car.getSelectionModel().getSelectedItem().getPicture()));
         
         descCar.setText(desc);
         priceperday.setText(price.toString() + " £");
         discount.setText(carDiscount.toString() + " %");
-        memberdiscount.setText(Login.session.getDiscountlevel().toString() + " %");
+        memberdiscount.setText(memberDiscount.toString() + " %");
         
         int duration = (int)DAYS.between(start.getValue(), end.getValue());
         rentDuration.setText(String.valueOf(duration) + " days");
@@ -104,9 +98,17 @@ public class RentController implements Initializable {
 
     }
     
-    // go to the payment page
+    // rent car and go to the payment page
     @FXML
-    public void goToPay(ActionEvent event) throws Exception {        
+    public void goToPay(ActionEvent event) throws Exception { 
+        String immat = car.getSelectionModel().getSelectedItem().getImmatriculation();
+        String login = Login.session.getLogin();
+        
+        Controllers.Rental.newRent(immat, login, start.getValue(), end.getValue());
+        if(Entities.User.getByLogin(login).getUserlevel().equals("NEW CUSTOMER")){
+            Controllers.Administration.setUserToIndiv(login);
+        } 
+        
         Root rent = new Root("Payment", "..\\Views\\PayOff\\Payoff.fxml");
         Stage stage = new Stage();
         rent.start(stage);
