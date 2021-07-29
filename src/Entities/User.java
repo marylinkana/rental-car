@@ -84,8 +84,8 @@ public class User implements Serializable {
         this.password = password;
     }
     
-    public void rent(String immatriculation, Short idduration){
-        Rent rent = new Rent(this.login, immatriculation, idduration);
+    public void rent(String immatriculation, Short idduration, Double coust){
+        Rent rent = new Rent(this.login, immatriculation, idduration, coust);
     }
 
     /**

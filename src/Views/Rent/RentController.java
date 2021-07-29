@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -58,6 +59,14 @@ public class RentController implements Initializable {
     private Label withoutdiscount;
     @FXML
     private Button payBtn;
+    @FXML
+    private Button myRentals;
+    @FXML
+    private Menu myrentalMenu;
+    @FXML
+    private Menu adminMenu;
+    @FXML
+    private Menu rentMenu;
 
     /**
      * Initializes the controller class.
@@ -102,13 +111,16 @@ public class RentController implements Initializable {
     
     /** 
      * rent car and go to the payment page
+     * @param event
      */
     @FXML
     public void goToPay(ActionEvent event) throws Exception { 
         String immat = car.getSelectionModel().getSelectedItem().getImmatriculation();
         String login = Login.session.getLogin();
+        int duration = (int)DAYS.between(start.getValue(), end.getValue());
+        double coust = Controllers.Rental.totalCost(Login.session, car.getSelectionModel().getSelectedItem(), duration);
         
-        Controllers.Rental.newRent(immat, login, start.getValue(), end.getValue());
+        Controllers.Rental.newRent(immat, login, start.getValue(), end.getValue(), coust);
         if(Entities.User.getByLogin(login).getUserlevel().equals("NEW CUSTOMER")){
             Controllers.Administration.setUserToIndiv(login);
         } 
@@ -119,6 +131,44 @@ public class RentController implements Initializable {
         
         Stage stg = (Stage)payBtn.getScene().getWindow();
         stg.close();
+    }
+
+    @FXML
+    public void goToMyRentals(ActionEvent event) throws Exception {
+        Root myRental = new Root("Payment", "..\\Views\\MyRentals\\MyRentals.fxml");
+        Stage stage = new Stage();
+        myRental.start(stage);
+        
+        Stage stg = (Stage)payBtn.getScene().getWindow();
+        stg.close();
+    }
+    
+    /**
+     * Root the application to go to rental page
+     */
+    @FXML
+    public void goToAdmin(ActionEvent event) throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)payBtn.getScene().getWindow();
+        stg.close();
+    }
+
+    @FXML
+    private void goToMyRent(ActionEvent event) throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\MyRentals\\MyRentals.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)payBtn.getScene().getWindow();
+        stg.close();
+    }
+
+    @FXML
+    private void goToRent(ActionEvent event) {
+        
     }
 
 }

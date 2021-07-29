@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +24,12 @@ public class PayoffController implements Initializable {
 
     @FXML
     private Button confirm;
+    @FXML
+    private Menu myrentalMenu;
+    @FXML
+    private Menu adminMenu;
+    @FXML
+    private Menu rentMenu;
 
     /**
      * Initializes the controller class.
@@ -37,7 +44,35 @@ public class PayoffController implements Initializable {
      */
     @FXML
     public void confirm(ActionEvent event) throws Exception {
+        goToMyRent(event);
+    }
+    
+    /**
+     * Root the application to go to rental page
+     */
+    @FXML
+    public void goToRent(ActionEvent event) throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Rent\\Rent.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)confirm.getScene().getWindow();
+        stg.close();
+    }
+
+        @FXML
+    private void goToMyRent(ActionEvent event) throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\MyRentals\\MyRentals.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)confirm.getScene().getWindow();
+        stg.close();
+    }
+
+    @FXML
+    private void goToAdmin(ActionEvent event) throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
         Stage stage = new Stage();
         rent.start(stage);
         

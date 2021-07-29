@@ -10,9 +10,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.PayOff.PayoffController">
    <children>
-      <Button fx:id="confirm" layoutX="152.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirm" prefHeight="51.0" prefWidth="288.0" text="CONFIRM PAYMENT AND BACK TO RENTAL" />
+       <MenuBar id="menu" layoutY="-1.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-size: red;">
+            <menus>
+                <Menu fx:id="myrentalMenu" mnemonicParsing="false" onAction="#goToMyRent" text="My Rental" />
+                <Menu fx:id="adminMenu" mnemonicParsing="false" onAction="#goToAdmin" text="Admin" />
+                <Menu fx:id="rentMenu" mnemonicParsing="false" onAction="#goToRent" text="Rent" />
+            </menus>
+        </MenuBar>
+      <Button fx:id="confirm" layoutX="152.0" layoutY="345.0" mnemonicParsing="false" onAction="#confirm" prefHeight="51.0" prefWidth="288.0" text="CONFIRM PAYMENT" />
       <Label layoutX="144.0" layoutY="115.0" prefHeight="17.0" prefWidth="288.0" text="CART NUMBER :" />
-      <Label layoutX="14.0" layoutY="21.0" prefHeight="66.0" prefWidth="265.0" text="PAYMENT">
+      <Label layoutX="14.0" layoutY="27.0" prefHeight="66.0" prefWidth="265.0" text="PAYMENT">
          <font>
             <Font size="30.0" />
          </font>

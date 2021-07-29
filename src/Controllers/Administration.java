@@ -6,12 +6,14 @@
 package Controllers;
 
 import Entities.Car;
+import Entities.Rent;
 import Entities.User;
 import Models.Administrator;
 import Models.BusinessMember;
 import Models.IndividualMember;
 import java.util.Collection;
 import java.util.List;
+import javax.persistence.Query;
 
 
 /**
@@ -107,6 +109,15 @@ public class Administration {
         return User.getByLogin(login);
     }
     
+    public static List<Rent> getAllRentals(){
+        return Rent.getAll();
+    }
+    
+    public static List<Rent> getRentalsByLogin(String Login){
+        return Rent.getByLogin(Login);
+    }
+
+    
     /**
      * main to test the class
      */
@@ -116,5 +127,6 @@ public class Administration {
             System.out.println(car.getDescription());
         }
     }
+    
     
 }

@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -47,6 +48,18 @@ public class AdminController implements Initializable {
     private ChoiceBox<String> userLevelsCB;
     @FXML
     private Button sendCar;
+    @FXML
+    private Menu myrentalMenu;
+    @FXML
+    private Menu adminMenu;
+    @FXML
+    private Menu rentMenu;
+    @FXML
+    private Button sendCarDiscount;
+    @FXML
+    private Button sendDiscount;
+    @FXML
+    private Button goToRent;
 
     /**
      * Initializes the controller class.
@@ -127,6 +140,26 @@ public class AdminController implements Initializable {
      * refrech the page
      */
     private void refrech() throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)sendCar.getScene().getWindow();
+        stg.close();
+    }
+
+    @FXML
+    private void goToMyRent(ActionEvent event) throws Exception {
+        Root rent = new Root("Rental", "..\\Views\\MyRentals\\MyRentals.fxml");
+        Stage stage = new Stage();
+        rent.start(stage);
+        
+        Stage stg = (Stage)sendCar.getScene().getWindow();
+        stg.close();
+    }
+
+    @FXML
+    private void goToAdmin(ActionEvent event) throws Exception {
         Root rent = new Root("Rental", "..\\Views\\Admin\\Admin.fxml");
         Stage stage = new Stage();
         rent.start(stage);

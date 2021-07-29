@@ -18,6 +18,9 @@ import javax.persistence.Embeddable;
 public class RentPK implements Serializable {
 
     @Basic(optional = false)
+    @Column(name = "idrent")
+    private short idrent;
+    @Basic(optional = false)
     @Column(name = "immatriculation")
     private String immatriculation;
     @Basic(optional = false)
@@ -26,9 +29,30 @@ public class RentPK implements Serializable {
     @Basic(optional = false)
     @Column(name = "idduration")
     private short idduration;
+    @Basic(optional = false)
+    @Column(name = "rentalPrice")
+    private Double rentalPrice;
+
+    public Double getRentalPrice() {
+        return rentalPrice;
+    }
+
+    public void setRentalPrice(Double rentalPrice) {
+        this.rentalPrice = rentalPrice;
+    }
 
     public RentPK() {
     }
+
+    public short getIdrent() {
+        return idrent;
+    }
+
+    public void setIdrent(short idrent) {
+        this.idrent = idrent;
+    }
+    
+    
 
     public RentPK(String immatriculation, String login, short idduration) {
         this.immatriculation = immatriculation;

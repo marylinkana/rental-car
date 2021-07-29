@@ -7,8 +7,11 @@ package Entities;
 
 import Controllers.BDSession;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -67,6 +70,8 @@ public class Duration implements Serializable {
     
     /**
      * create new duration for a rental and insert it in data base
+     * @param start
+     * @param end
      */
     public Duration(LocalDate start, LocalDate end) {
         EntityManager em = BDSession.getEM();
@@ -88,6 +93,7 @@ public class Duration implements Serializable {
     
     /**
      * get the last duration in database
+     * @return
      */
     public static int getLastDurationId() {
         List<Duration> durations = BDSession.getEM().createNamedQuery("Duration.findAll").getResultList();
@@ -96,23 +102,27 @@ public class Duration implements Serializable {
     }
     
     public int numberOfDay(){
-        return start.compareTo(end);
+        return (int)DAYS.between(start.toInstant(), end.toInstant());
     }
 
     public void setIdduration(Short idduration) {
         this.idduration = idduration;
     }
 
-    public Date getStart() {
-        return start;
+    public LocalDate getStart() {
+        return Instant.ofEpochMilli(start.getTime())
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
     }
 
     public void setStart(Date start) {
         this.start = start;
     }
 
-    public Date getEnd() {
-        return end;
+    public LocalDate getEnd() {
+        return Instant.ofEpochMilli(end.getTime())
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
     }
 
     public void setEnd(Date end) {
@@ -149,7 +159,8 @@ public class Duration implements Serializable {
 
     @Override
     public String toString() {
-        return "Controllers.Duration[ idduration=" + idduration + " ]";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LLLL/yyyy");
+        return this.getStart().format(formatter) + " -> " + this.getEnd().format(formatter) + " = " + this.numberOfDay() + " days";
     }
     
 }

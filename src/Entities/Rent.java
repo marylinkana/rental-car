@@ -7,6 +7,7 @@ package Entities;
 
 import Controllers.BDSession;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author kanab
  */
-@Entity
+    @Entity
 @Table(name = "rent")
 @XmlRootElement
 @NamedQueries({
@@ -31,12 +32,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Rent.findByImmatriculation", query = "SELECT r FROM Rent r WHERE r.rentPK.immatriculation = :immatriculation")
     , @NamedQuery(name = "Rent.findByLogin", query = "SELECT r FROM Rent r WHERE r.rentPK.login = :login")
     , @NamedQuery(name = "Rent.findByIdduration", query = "SELECT r FROM Rent r WHERE r.rentPK.idduration = :idduration")
+    , @NamedQuery(name = "Rent.findByPrice", query = "SELECT r FROM Rent r WHERE r.rentPK.rentalPrice = :rentalPrice")
+    , @NamedQuery(name = "Rent.findByIdRent", query = "SELECT r FROM Rent r WHERE r.rentPK.idrent = :idrent")
 })
 public class Rent implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected RentPK rentPK;
+    private Double idrent;
     @JoinColumn(name = "idduration", referencedColumnName = "idduration", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Duration duration;
@@ -46,6 +50,15 @@ public class Rent implements Serializable {
     @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Car car;
+    private Double rentalPrice;
+
+    public Double getRentalPrice() {
+        return rentalPrice;
+    }
+
+    public void setRentalPrice(Double rentalPrice) {
+        this.rentalPrice = rentalPrice;
+    }
 
     public Rent() {
     }
@@ -53,25 +66,53 @@ public class Rent implements Serializable {
     public Rent(RentPK rentPK) {
         this.rentPK = rentPK;
     }
+
+    public Double getIdrent() {
+        return idrent;
+    }
+
+    public void setIdrent(Double idrent) {
+        this.idrent = idrent;
+    }
+    
+    
         
     /**
      * create new car and insert it in data base
+     * @param immatriculation
+     * @param login
+     * @param idduration
+     * @param coust
      */
-    public Rent(String immatriculation, String login, int idduration){
+    public Rent(String immatriculation, String login, int idduration, double coust){
         EntityManager em = BDSession.getEM();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        String sql = "INSERT INTO Rent (immatriculation, login, idduration) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Rent (immatriculation, login, idduration, rentalPrice) VALUES (?, ?, ?, ?)";
     
         Query query = em.createNativeQuery(sql); 
         query.setParameter(1, immatriculation);
         query.setParameter(2, login);
         query.setParameter(3, idduration);
+        query.setParameter(4, coust);
         query.executeUpdate();
         
         tx.commit();
         em.close();
+    }
+    
+    public static List<Rent> getAll(){
+        BDSession.getEM().getTransaction().begin();
+        Query query = BDSession.getEM().createNamedQuery("Rent.findAll", Rent.class);
+        return query.getResultList();
+    }
+    
+    public static List<Rent> getByLogin(String login){
+        BDSession.getEM().getTransaction().begin();
+        Query query = BDSession.getEM().createNamedQuery("Rent.findByLogin", Rent.class);
+        query.setParameter("login", login);
+        return query.getResultList();
     }
 
     public RentPK getRentPK() {

@@ -83,6 +83,7 @@ public class Car implements Serializable {
     
     /**
      * get all car from data base
+     * @return
      */
     public static List<Car> getAllCars(){
         BDSession.getEM().getTransaction().begin();
@@ -92,6 +93,8 @@ public class Car implements Serializable {
     
     /**
      * set the discount of a specific car with its immatriculation
+     * @param discount
+     * @param immat
      */
     public static void setCarDiscount(double discount, String immat) {
         EntityManager em = BDSession.getEM();
@@ -180,7 +183,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return this.getDescription();
+        return this.description + " | " + this.immatriculation;
     }
     
 }
